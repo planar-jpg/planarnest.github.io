@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanarNest - The Ultimate Nesting Tool</title>
+    <meta name="description" content="Optimize your laser cutting and CNC workflows with PlanarNest. The smart, manual-control nesting tool for professionals.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236366f1'/><path d='M30 30 L70 30 L70 70 L30 70 Z' fill='white'/></svg>">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">▢</span> PlanarNest
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#workflow">Workflow</a>
+                <a href="#pricing">Pricing</a>
+            </div>
+            <a href="#download" class="btn btn-primary btn-sm">Get Started</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">Example Badge</div>
+                <h1 class="hero-title">
+                    Maximize Materials.<br>
+                    <span class="gradient-text">Minimize Waste.</span>
+                </h1>
+                <p class="hero-description">
+                    The professional nesting tool dedicated to laser cutters and CNC routers. 
+                    Experience the perfect balance of manual control and algorithmic power.
+                    Drag, Drop, Done.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" id="download-btn">
+                        <span>Download for Windows</span>
+                        <small>v1.0.0 Beta (Coming Soon)</small>
+                    </button>
+                    <button class="btn btn-secondary">Watch Demo</button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">98%</span>
+                        <span class="stat-label">Efficiency</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">0s</span>
+                        <span class="stat-label">Setup Time</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">Local</span>
+                        <span class="stat-label">Processing</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="window-frame">
+                    <div class="window-header">
+                        <div class="dot red"></div>
+                        <div class="dot yellow"></div>
+                        <div class="dot green"></div>
+                    </div>
+                    <!-- Placeholder for the app screenshot -->
+                    <div class="window-content" id="app-preview-placeholder">
+                        <div class="preview-loader"></div>
+                    </div>
+                    <img src="./assets/app-screenshot.png" alt="PlanarNest Interface" class="window-image" style="display: none;">
+                </div>
+                <div class="glow-effect"></div>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why PlanarNest?</h2>
+                <p>Built for the shop floor, not just the engineering office.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon-box">⚡</div>
+                    <h3>Zero Configuration</h3>
+                    <p>Forget complex parameters. Just drag your files and click start. Our algorithm handles the rest instantly.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">🎯</div>
+                    <h3>Precision Control</h3>
+                    <p>You know your materials best. Lock rotations, define grains, and manually override placements with ease.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-box">🔒</div>
+                    <h3>Privacy First</h3>
+                    <p>Everything runs locally on your machine. Your proprietary designs never leave your computer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <h2>Ready to optimize your workflow?</h2>
+                <p>Join the waitlist or download the beta version today.</p>
+                <form class="email-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-primary">Notify Me</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">PlanarNest</div>
+                <div class="footer-copy">© 2025 PlanarNest. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
