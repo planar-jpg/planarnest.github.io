@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PlanarNest - The Ultimate Nesting Tool</title>
-    <meta name="description" content="Optimize your laser cutting and CNC workflows with PlanarNest. The smart, manual-control nesting tool for professionals.">
+    <meta name="description"
+        content="Optimize your laser cutting and CNC workflows with PlanarNest. The smart, manual-control nesting tool for professionals.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236366f1'/><path d='M30 30 L70 30 L70 70 L30 70 Z' fill='white'/></svg>">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%236366f1'/><path d='M30 30 L70 30 L70 70 L30 70 Z' fill='white'/></svg>">
 </head>
+
 <body>
     <div class="noise-overlay"></div>
-    
+
     <nav class="navbar">
         <div class="container">
             <div class="logo">
@@ -31,51 +37,52 @@
     <header class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="badge">Example Badge</div>
+                <div class="badge">Windows 10/11 Compatible</div>
                 <h1 class="hero-title">
-                    Maximize Materials.<br>
-                    <span class="gradient-text">Minimize Waste.</span>
+                    Control Your Nesting.<br>
+                    <span class="gradient-text">Save Material & Money.</span>
                 </h1>
                 <p class="hero-description">
-                    The professional nesting tool dedicated to laser cutters and CNC routers. 
-                    Experience the perfect balance of manual control and algorithmic power.
-                    Drag, Drop, Done.
+                    The essential companion for LightBurn & CNC users.
+                    Stop wasting expensive scraps. Drag, drop, and optimize in seconds.
                 </p>
                 <div class="hero-actions">
-                    <button class="btn btn-primary" id="download-btn">
-                        <span>Download for Windows</span>
-                        <small>v1.0.0 Beta (Coming Soon)</small>
-                    </button>
-                    <button class="btn btn-secondary">Watch Demo</button>
+                    <a href="#" class="btn btn-primary" id="download-btn">
+                        <span>Download Free Trial</span>
+                        <small>Windows Installer (64-bit)</small>
+                    </a>
+                    <a href="#pricing" class="btn btn-secondary" style="padding: 12px 32px;">
+                        Buy License - $49
+                    </a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <span class="stat-value">98%</span>
-                        <span class="stat-label">Efficiency</span>
+                        <span class="stat-value">15%</span>
+                        <span class="stat-label">Avg. Material Saved</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-value">0s</span>
-                        <span class="stat-label">Setup Time</span>
+                        <span class="stat-value">1-Click</span>
+                        <span class="stat-label">Export to LightBurn</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-value">Local</span>
-                        <span class="stat-label">Processing</span>
+                        <span class="stat-value">Lifetime</span>
+                        <span class="stat-label">License</span>
                     </div>
                 </div>
             </div>
-            
+
             <div class="hero-visual">
                 <div class="window-frame">
                     <div class="window-header">
                         <div class="dot red"></div>
                         <div class="dot yellow"></div>
                         <div class="dot green"></div>
+                        <span style="margin-left: 10px; font-size: 12px; color: #666;">PlanarNest v1.0</span>
                     </div>
-                    <!-- Placeholder for the app screenshot -->
+                    <!-- Placeholder for future GIF/Screenshot -->
                     <div class="window-content" id="app-preview-placeholder">
-                        <div class="preview-loader"></div>
+                        <img src="./assets/app-screenshot.png" alt="PlanarNest UI" class="window-image">
                     </div>
-                    <img src="./assets/app-screenshot.png" alt="PlanarNest Interface" class="window-image" style="display: none;">
                 </div>
                 <div class="glow-effect"></div>
             </div>
@@ -85,51 +92,94 @@
     <section id="features" class="features-section">
         <div class="container">
             <div class="section-header">
-                <h2>Why PlanarNest?</h2>
-                <p>Built for the shop floor, not just the engineering office.</p>
+                <h2>Designed for Makers</h2>
+                <p>Simple enough for hobbyists, powerful enough for production.</p>
             </div>
             <div class="feature-grid">
                 <div class="feature-card">
                     <div class="icon-box">⚡</div>
-                    <h3>Zero Configuration</h3>
-                    <p>Forget complex parameters. Just drag your files and click start. Our algorithm handles the rest instantly.</p>
+                    <h3>Instant Optimization</h3>
+                    <p>Advanced algorithms pack your parts tighter than humanly possible in seconds.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon-box">🎯</div>
-                    <h3>Precision Control</h3>
-                    <p>You know your materials best. Lock rotations, define grains, and manually override placements with ease.</p>
+                    <div class="icon-box">🔧</div>
+                    <h3>Manual Control</h3>
+                    <p>Total control over rotation and spacing. Perfect for grain-sensitive materials.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="icon-box">🔒</div>
-                    <h3>Privacy First</h3>
-                    <p>Everything runs locally on your machine. Your proprietary designs never leave your computer.</p>
+                    <div class="icon-box">🚀</div>
+                    <h3>LightBurn Ready</h3>
+                    <p>Export clean SVG/DXF files ready to drop straight into your laser software.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="cta-section">
+    <section id="pricing" class="cta-section">
         <div class="container">
             <div class="cta-card">
-                <h2>Ready to optimize your workflow?</h2>
-                <p>Join the waitlist or download the beta version today.</p>
-                <form class="email-form">
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit" class="btn btn-primary">Notify Me</button>
-                </form>
+                <h2>Stop Wasting Material Today</h2>
+                <p style="margin-bottom: 30px;">Pay once, own it forever. No monthly subscriptions.</p>
+                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn btn-primary" style="font-size: 1.1rem; padding: 16px 40px;">Get PlanarNest -
+                        $49</button>
+                    <!-- <button class="btn btn-secondary">Download Trial</button> -->
+                </div>
+                <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">30-Day Money Back Guarantee</p>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">PlanarNest</div>
-                <div class="footer-copy">© 2025 PlanarNest. All rights reserved.</div>
+            <div class="footer-content" style="flex-direction: column; align-items: flex-start; gap: 40px;">
+                <div style="display: flex; justify-content: space-between; width: 100%; flex-wrap: wrap; gap: 40px;">
+                    <div>
+                        <div class="footer-brand" style="margin-bottom: 12px;">PlanarNest</div>
+                        <div class="footer-copy">© 2025 PlanarNest. All rights reserved.</div>
+                        <div class="footer-copy" style="margin-top: 8px; font-size: 0.8rem; opacity: 0.6;">
+                            Not affiliated with LightBurn Software. LightBurn is a trademark of LightBurn Software, LLC.
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 40px;">
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <span style="color: white; font-weight: 600;">Product</span>
+                            <a href="#"
+                                style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Download</a>
+                            <a href="#pricing"
+                                style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Pricing</a>
+                            <a href="#"
+                                style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Changelog</a>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <span style="color: white; font-weight: 600;">Support</span>
+                            <a href="mailto:support@planarnest.com"
+                                style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Email
+                                Support</a>
+                            <a href="#"
+                                style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Discord
+                                Community</a>
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <span style="color: white; font-weight: 600;">Legal</span>
+                            <a href="#"
+                                style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Privacy
+                                Policy</a>
+                            <a href="#"
+                                style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Terms of
+                                Service</a>
+                            <a href="#"
+                                style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Refund
+                                Policy</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
 </body>
+
 </html>
