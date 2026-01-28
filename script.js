@@ -9,10 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Compose with the base tilt (Floor Mode)
             // Base: rotateX(65deg)
+            // We reduce the Y-rotation (leaning left/right) significantly to prevent "drift"
+            const tiltX = 65 - yPos * 0.1; // Front/Back tilt
+            const tiltY = xPos * 0.05;     // Left/Right tilt (Very subtle)
+
             heroContainer.style.transform = `
-                rotateX(${65 - yPos * 0.2}deg) 
-                rotateY(${0 + xPos * 0.1}deg) 
+                rotateX(${tiltX}deg) 
+                rotateY(${tiltY}deg) 
                 translateY(100px)
+                translateX(0px) /* Force Center */
             `;
         });
     }
