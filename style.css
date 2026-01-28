@@ -374,277 +374,273 @@ body::before {
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.7);
     overflow: hidden;
-    transform: rotateX(2deg);
-    /* Slight 3D tilt */
-    transform-origin: center top;
-    position: relative;
-    animation: floatingHero 6s ease-in-out infinite;
-}
 
-@keyframes floatingHero {
-    0% {
-        transform: rotateX(2deg) translateY(0);
+    /* --- Hero Visual (Nesting Animation) --- */
+    .hero-visual {
+        margin-top: 60px;
+        height: 500px;
+        /* Allocated space */
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        perspective: 1200px;
+        /* For 3D rotation of the whole sheet if needed */
     }
 
-    50% {
-        transform: rotateX(3deg) translateY(-10px);
+    #nesting-animation-container {
+        width: 600px;
+        /* Match SVG viewBox */
+        height: 400px;
+        position: relative;
+        /* Initial tilt for the whole container */
+        transform: rotateX(20deg) rotateY(-10deg) rotateZ(5deg);
+        transform-style: preserve-3d;
+        transition: transform 0.5s ease-out;
+        /* For mouse movement later */
+        filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
     }
 
-    100% {
-        transform: rotateX(2deg) translateY(0);
+    #nesting-animation-container svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        /* Allow parts to fly in from outside */
     }
-}
 
-.app-header {
-    height: 48px;
-    background: #1a1a1a;
-    display: flex;
-    align-items: center;
-    padding: 0 16px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
+    /* Parts Styling */
+    #nesting-animation-container path {
+        vector-effect: non-scaling-stroke;
+        fill: rgba(255, 255, 255, 0.05);
+        /* Glassy fill */
+        stroke-width: 1px;
+        stroke-opacity: 0.8;
+        transition: all 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+        /* Apple-style ease out */
+        will-change: transform, opacity;
+    }
 
-.traffic-lights span {
-    display: inline-block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #333;
-    margin-right: 8px;
-}
+    /* Hover effect on parts once assembled */
+    #nesting-animation-container path:hover {
+        fill: rgba(255, 255, 255, 0.2);
+        filter: drop-shadow(0 0 8px currentColor);
+        cursor: pointer;
+    }
 
-.address-bar {
-    margin: 0 auto;
-    font-size: 0.8rem;
-    color: #444;
-    background: #111;
-    padding: 4px 12px;
-    border-radius: 4px;
-    width: 300px;
-    text-align: center;
-}
-
-.app-content img {
-    width: 100%;
-    display: block;
-    opacity: 0.8;
-    /* Dim it slightly for mood */
-}
-
-/* Reflection/Shine under window */
-.reflection {
-    position: absolute;
-    bottom: -40px;
-    left: 5%;
-    width: 90%;
-    height: 20px;
-    background: radial-gradient(ellipse at center, rgba(94, 106, 210, 0.4), transparent 70%);
-    filter: blur(20px);
-    z-index: -1;
-    opacity: 0.5;
-}
+    .glow-effect {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 150%;
+        height: 150%;
+        background: radial-gradient(circle, rgba(94, 106, 210, 0.15), transparent 70%);
+        filter: blur(60px);
+        z-index: -1;
+        pointer-events: none;
+    }
 
 
-/* --- Bento Grid Features --- */
-.features-section {
-    padding: 120px 0;
-}
+    /* --- Bento Grid Features --- */
+    .features-section {
+        padding: 120px 0;
+    }
 
-.section-header {
-    text-align: center;
-    margin-bottom: 80px;
-}
+    .section-header {
+        text-align: center;
+        margin-bottom: 80px;
+    }
 
-.section-header h2 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-bottom: 16px;
-    letter-spacing: -0.02em;
-}
+    .section-header h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        letter-spacing: -0.02em;
+    }
 
-.bento-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minmax(300px, auto);
-    gap: 24px;
-}
-
-.bento-card {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-    border: none;
-    /* Removed solid border */
-    border-radius: 24px;
-    padding: 32px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-/* Gradient Border (Top-down light) */
-.bento-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 24px;
-    padding: 1px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    z-index: 4;
-    /* Above the spotlight */
-}
-
-.bento-card:hover {
-    transform: translateY(-4px);
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.04);
-}
-
-/* Spotlight Effect on Bento Cards */
-.bento-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 24px;
-    padding: 1px;
-    /* border width */
-    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y),
-            rgba(255, 255, 255, 0.4),
-            transparent 40%);
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    z-index: 3;
-    pointer-events: none;
-    opacity: 0;
-    /* Hidden by default, script will update coords */
-    transition: opacity 0.5s;
-}
-
-.bento-card:hover::before {
-    opacity: 1;
-}
-
-.span-2 {
-    grid-column: span 2;
-}
-
-.span-1 {
-    grid-column: span 1;
-}
-
-.card-content {
-    position: relative;
-    z-index: 2;
-}
-
-.icon-box {
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-}
-
-.bento-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 10px;
-    color: #fff;
-    font-weight: 600;
-}
-
-.bento-card p {
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-}
-
-/* Internal Visuals for Bento Cards */
-.card-visual {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 100%;
-    height: 150px;
-    background: linear-gradient(to top, rgba(94, 106, 210, 0.1), transparent);
-    z-index: 1;
-}
-
-.visual-graph {
-    background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.03) 10px, rgba(255, 255, 255, 0.03) 20px);
-}
-
-/* --- CTA Section --- */
-.cta-section {
-    padding: 100px 0;
-    text-align: center;
-}
-
-.cta-card {
-    background: radial-gradient(circle at center, #1a1b26 0%, #000212 100%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 32px;
-    padding: 80px 20px;
-    position: relative;
-    overflow: hidden;
-}
-
-.glow-bg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(94, 106, 210, 0.2), transparent 70%);
-    filter: blur(80px);
-    pointer-events: none;
-}
-
-/* --- Footer --- */
-footer {
-    padding: 60px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    margin-top: 40px;
-}
-
-.footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 32px;
-    color: #666;
-    font-size: 0.9rem;
-}
-
-.footer-links a {
-    color: #666;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.footer-links a:hover {
-    color: #fff;
-}
-
-/* --- Mobile Responsiveness --- */
-@media (max-width: 900px) {
     .bento-grid {
-        grid-template-columns: 1fr;
-        /* Stack everything */
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: minmax(300px, auto);
+        gap: 24px;
     }
 
-    .span-2,
+    .bento-card {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+        border: none;
+        /* Removed solid border */
+        border-radius: 24px;
+        padding: 32px;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* Gradient Border (Top-down light) */
+    .bento-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 24px;
+        padding: 1px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 100%);
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+        z-index: 4;
+        /* Above the spotlight */
+    }
+
+    .bento-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    /* Spotlight Effect on Bento Cards */
+    .bento-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 24px;
+        padding: 1px;
+        /* border width */
+        background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y),
+                rgba(255, 255, 255, 0.4),
+                transparent 40%);
+        -webkit-mask:
+            linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        z-index: 3;
+        pointer-events: none;
+        opacity: 0;
+        /* Hidden by default, script will update coords */
+        transition: opacity 0.5s;
+    }
+
+    .bento-card:hover::before {
+        opacity: 1;
+    }
+
+    .span-2 {
+        grid-column: span 2;
+    }
+
     .span-1 {
         grid-column: span 1;
     }
 
-    .hero-title {
-        font-size: 3rem;
+    .card-content {
+        position: relative;
+        z-index: 2;
     }
-}
+
+    .icon-box {
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+    }
+
+    .bento-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .bento-card p {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+    }
+
+    /* Internal Visuals for Bento Cards */
+    .card-visual {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 150px;
+        background: linear-gradient(to top, rgba(94, 106, 210, 0.1), transparent);
+        z-index: 1;
+    }
+
+    .visual-graph {
+        background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.03) 10px, rgba(255, 255, 255, 0.03) 20px);
+    }
+
+    /* --- CTA Section --- */
+    .cta-section {
+        padding: 100px 0;
+        text-align: center;
+    }
+
+    .cta-card {
+        background: radial-gradient(circle at center, #1a1b26 0%, #000212 100%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 32px;
+        padding: 80px 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .glow-bg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(94, 106, 210, 0.2), transparent 70%);
+        filter: blur(80px);
+        pointer-events: none;
+    }
+
+    /* --- Footer --- */
+    footer {
+        padding: 60px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        margin-top: 40px;
+    }
+
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 32px;
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .footer-links a {
+        color: #666;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+        color: #fff;
+    }
+
+    /* --- Mobile Responsiveness --- */
+    @media (max-width: 900px) {
+        .bento-grid {
+            grid-template-columns: 1fr;
+            /* Stack everything */
+        }
+
+        .span-2,
+        .span-1 {
+            grid-column: span 1;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+        }
+    }
