@@ -377,38 +377,40 @@ body::before {
 }
 
 /* --- Hero Visual (Nesting Animation) --- */
+/* --- Hero Visual (Nesting Animation) --- */
 .hero-visual {
-    margin-top: 40px;
-    height: 600px;
-    /* More vertical space for the "pile" */
+    position: absolute;
+    /* Changed from relative to absolute to sit behind content */
+    bottom: -30%;
+    /* Push it down significantly to be a floor */
+    left: 50%;
+    transform: translateX(-50%);
     width: 100vw;
-    /* Full width */
-    margin-left: calc(-50vw + 50%);
-    /* Break out of container to be full width */
-    position: relative;
+    height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    /* Align to top of this section so it overlaps/is close to text */
-    perspective: 1200px;
-    overflow: visible;
-    z-index: -1;
-    /* Send behind text if they overlap, users said "laid below" */
+    align-items: flex-end;
+    /* Align to bottom */
+    perspective: 1000px;
+    z-index: -5;
+    /* Way back */
+    pointer-events: none;
+    /* Let clicks pass through to content */
+    overflow: hidden;
 }
 
 #nesting-animation-container {
-    width: 1400px;
-    /* Massive scale (User asked for 3x, SVG base is 600px) */
-    height: 900px;
-    /* Keep aspect ratio roughly */
+    width: 2500px;
+    /* 5x Scale (SVG base is ~600, so massive) */
+    height: 1500px;
     position: relative;
-    /* Initial tilt: flatter to look like a "floor" or "foundation" */
-    transform: rotateX(40deg) rotateY(0deg) rotateZ(0deg) translateY(-100px);
+    /* Floor perspective: Flat on ground */
+    transform: rotateX(70deg) scale(2.0);
     transform-style: preserve-3d;
-    transition: transform 0.5s ease-out;
-    filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.6));
-    opacity: 0.8;
-    /* Subtle blend */
+    transition: transform 0.1s ease-out;
+    /* Snappier response for mouse move */
+    opacity: 0.5;
+    /* Texture feel */
 }
 
 #nesting-animation-container svg {
