@@ -51,36 +51,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Scatter Preparation
                 paths.forEach((path, index) => {
-                    // Random start position (Chaos)
-                    // We want them to fly in from "above" and "around"
-                    const randomX = (Math.random() - 0.5) * 2000;
-                    const randomY = (Math.random() - 0.5) * 2000 - 1000; // biased upwards
-                    const randomRotate = (Math.random() - 0.5) * 720;
-                    const randomScale = 0.5 + Math.random();
+                    // Chaos State: Scattered far away, small scale, invisible
+                    const randomX = (Math.random() - 0.5) * 3000;
+                    const randomY = (Math.random() - 0.5) * 3000 - 1500; // Come from top/sky
+                    const randomRotate = (Math.random() - 0.5) * 360;
+                    const randomScale = 0.2 + Math.random() * 0.5; // Start small
 
-                    // Apply Chaos
                     path.style.transformOrigin = 'center';
                     path.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRotate}deg) scale(${randomScale})`;
                     path.style.opacity = '0';
-
-                    // Identify potential "Sheet" (large rect) and hide it
-                    // Heuristic: If path string has standard rect format or checking bbox (hard without rendering)
-                    // We'll trust visual check or user's specific exclusion.
-                    // For now, let's assume all paths are parts. 
-                    // If the user provided file has a frame, we might see it flying. 
+                    path.style.transition = 'all 1.5s cubic-bezier(0.19, 1, 0.22, 1)'; // Exponential ease out for "slamming" effect
                 });
 
                 // Trigger Assembly (Order)
-                // Small delay to ensure browser renders the chaos state first
-                setTimeout(() => {
-                    paths.forEach((path, index) => {
-                        // Stagger the animation slightly for more "organic" feel
-                        setTimeout(() => {
-                            path.style.opacity = '1';
-                            path.style.transform = 'translate(0, 0) rotate(0) scale(1)';
-                        }, index * 10 + Math.random() * 500); // Random delay
-                    });
-                }, 100);
+                // Slight delay to ensure DOM has painted the scattered state
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        paths.forEach((path, index) => {
+                            setTimeout(() => {
+                                path.style.opacity = '1';
+                                // Assembly State: Original position but SCALED UP (User requested 3x)
+                                // Since SVG is 600x400, 3x might be huge. Let's try 1.8x first to fill the screen width better without overflow.
+                                // Actually user said "3x", let's be bold but maybe handle it via container scale or path scale.
+                                // Scaling paths individually 3x works if they are centered, but they will overlap weirdly if not careful.
+                                // Better to scale the CONTAINER or the SVG ViewBox.
+                                // Let's reset the path transform to Identity (scale 1 relative to SVG space)
+                                // And we will scale the container in CSS.
+                                path.style.transform = 'translate(0, 0) rotate(0) scale(1)';
+                            }, index * 5 + Math.random() * 300); // Faster, more chaotic arrival
+                        });
+                    }, 100);
+                });
             });
     }
 
