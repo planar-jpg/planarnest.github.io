@@ -7,13 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const xPos = (e.clientX / window.innerWidth - 0.5) * 50; // -25 to 25deg
             const yPos = (e.clientY / window.innerHeight - 0.5) * 50;
 
-            // Compose with the base tilt
-            // Base: rotateX(20deg) rotateY(-10deg) rotateZ(5deg)
-            // We add mouse influence
+            // Compose with the base tilt (Floor Mode)
+            // Base: rotateX(65deg)
             heroContainer.style.transform = `
-                rotateX(${20 - yPos * 0.5}deg) 
-                rotateY(${-10 + xPos * 0.5}deg) 
-                rotateZ(5deg)
+                rotateX(${65 - yPos * 0.2}deg) 
+                rotateY(${0 + xPos * 0.1}deg) 
+                translateY(100px)
             `;
         });
     }
