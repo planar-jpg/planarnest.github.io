@@ -26,7 +26,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* --- Starfield & Spotlight Backgrounds --- */
+/* --- Backgrounds --- */
 .stars-container {
     position: fixed;
     top: 0;
@@ -37,55 +37,101 @@ body {
     overflow: hidden;
 }
 
-/* Simple CSS stars using box-shadows (performance friendly) */
-.stars {
-    width: 1px;
-    height: 1px;
-    background: transparent;
-    box-shadow: 100px 200px #fff, 400px 300px #fff, 900px 100px #fff,
-        1200px 600px #fff, 500px 800px #fff, 1500px 200px #fff;
-    animation: twinkle 10s infinite alternate;
-    opacity: 0.3;
+/* 3D Perspective Grid */
+.grid-background {
+    position: fixed;
+    bottom: -30%;
+    left: -50%;
+    width: 200%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    transform: perspective(500px) rotateX(60deg);
+    animation: gridMove 20s linear infinite;
+    z-index: -2;
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 60%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 60%);
+    pointer-events: none;
 }
 
-.stars2 {
+@keyframes gridMove {
+    0% {
+        transform: perspective(500px) rotateX(60deg) translateY(0);
+    }
+
+    100% {
+        transform: perspective(500px) rotateX(60deg) translateY(40px);
+    }
+}
+
+/* Existing Stars (Keep simple) */
+.stars {
     width: 2px;
     height: 2px;
-    background: transparent;
-    box-shadow: 200px 500px #fff, 600px 100px #fff, 1100px 800px #fff;
-    animation: twinkle 15s infinite alternate-reverse;
+    background: white;
+    box-shadow: 100px 200px white, 400px 300px white, 900px 100px white;
+    animation: twinkle 5s infinite alternate;
     opacity: 0.2;
 }
 
 @keyframes twinkle {
     0% {
-        opacity: 0.2;
-        transform: translateY(0);
+        opacity: 0.1;
     }
 
     100% {
-        opacity: 0.5;
-        transform: translateY(-20px);
+        opacity: 0.4;
     }
 }
 
 .spotlight {
     position: absolute;
-    top: -200px;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 1000px;
-    height: 600px;
-    background: radial-gradient(ellipse at center, rgba(94, 106, 210, 0.15), transparent 70%);
+    width: 100%;
+    max-width: 1200px;
+    height: 700px;
+    background: radial-gradient(circle at top, rgba(94, 106, 210, 0.25), transparent 60%);
     z-index: -1;
     pointer-events: none;
-    filter: blur(80px);
+    filter: blur(60px);
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 24px;
+    position: relative;
+    z-index: 10;
+}
+
+/* --- Entrance Animations --- */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.1s;
+}
+
+.delay-2 {
+    animation-delay: 0.2s;
+}
+
+.delay-3 {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* --- Navbar --- */
@@ -95,9 +141,10 @@ body {
     width: 100%;
     top: 0;
     z-index: 1000;
-    background: rgba(0, 2, 18, 0.6);
+    background: rgba(0, 2, 18, 0.8);
+    /* Darker */
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .navbar .container {
@@ -107,17 +154,18 @@ body {
 }
 
 .logo {
-    font-weight: 600;
-    font-size: 1.1rem;
+    font-weight: 700;
+    font-size: 1.2rem;
     display: flex;
     align-items: center;
     gap: 10px;
     color: #fff;
+    letter-spacing: -0.02em;
 }
 
 .logo-icon {
     color: var(--primary);
-    filter: drop-shadow(0 0 8px rgba(94, 106, 210, 0.6));
+    filter: drop-shadow(0 0 10px rgba(94, 106, 210, 0.8));
 }
 
 .nav-links {
@@ -138,55 +186,54 @@ body {
     color: #fff;
 }
 
-/* --- Buttons (Pill Style) --- */
+/* --- Buttons --- */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 20px;
-    border-radius: 100px;
-    /* Pill shape */
-    font-weight: 500;
+    padding: 12px 24px;
+    border-radius: 99px;
+    font-weight: 600;
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.2s;
-    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    font-size: 0.95rem;
     border: 1px solid transparent;
 }
 
 .btn-sm {
-    padding: 6px 14px;
+    padding: 8px 16px;
     font-size: 0.85rem;
 }
 
 .btn-primary {
     background: #fff;
     color: #000;
-    border: 1px solid #fff;
 }
 
 .btn-primary:hover {
-    background: #e2e2e2;
-    transform: translateY(-1px);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .btn-secondary {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.1);
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.05);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 /* --- Hero --- */
 .hero {
-    padding-top: 160px;
+    padding-top: 180px;
     padding-bottom: 120px;
     text-align: center;
     position: relative;
+    overflow: hidden;
+    /* containment for grid */
 }
 
 .pill-badge {
@@ -194,14 +241,14 @@ body {
     align-items: center;
     gap: 8px;
     padding: 4px 12px 4px 4px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(94, 106, 210, 0.1);
+    border: 1px solid rgba(94, 106, 210, 0.3);
     border-radius: 100px;
     font-size: 0.8rem;
-    color: var(--text-muted);
+    color: #b4abd4;
     margin-bottom: 32px;
     backdrop-filter: blur(4px);
-    transition: border-color 0.2s;
+    box-shadow: 0 0 15px rgba(94, 106, 210, 0.1);
 }
 
 .pill-badge:hover {
@@ -220,23 +267,31 @@ body {
 }
 
 .hero-title {
-    font-size: 4.5rem;
-    /* Massive title */
-    line-height: 1.05;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    /* Tight letter spacing */
+    font-size: 5rem;
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.04em;
     margin-bottom: 24px;
-    background: linear-gradient(180deg, #fff 0%, #a5a5a5 100%);
+    background: linear-gradient(180deg, #fff 20%, #777 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 3.5rem;
+    }
+}
+
 .gradient-text {
-    background: linear-gradient(90deg, #9FA5D5 0%, #E8F5C8 100%);
-    /* Subtle pastel gradient */
+    background: linear-gradient(90deg, #8E2DE2 0%, #4A00E0 100%);
+    /* Strong purple */
+    background: linear-gradient(to right, #a78bfa, #2dd4bf);
+    /* Modern Purple-Teal */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    padding-right: 0.1em;
+    /* Fix cut-off italics if any */
 }
 
 .hero-description {
@@ -401,6 +456,36 @@ body {
     transform: translateY(-4px);
     border-color: rgba(255, 255, 255, 0.1);
     background: rgba(255, 255, 255, 0.04);
+}
+
+/* Spotlight Effect on Bento Cards */
+.bento-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 24px;
+    padding: 1px;
+    /* border width */
+    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y),
+            rgba(255, 255, 255, 0.4),
+            transparent 40%);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0;
+    /* Hidden by default, script will update coords */
+    transition: opacity 0.5s;
+}
+
+.bento-card:hover::before {
+    opacity: 1;
 }
 
 .span-2 {
