@@ -378,39 +378,36 @@ body::before {
 
 /* --- Hero Visual (Nesting Animation) --- */
 /* --- Hero Visual (Nesting Animation) --- */
+/* --- Hero Visual (Nesting Animation) --- */
 .hero-visual {
-    position: absolute;
-    /* Changed from relative to absolute to sit behind content */
-    bottom: -30%;
-    /* Push it down significantly to be a floor */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100vw;
+    position: fixed;
+    /* Global background floor */
+    bottom: -10%;
+    left: 0;
+    width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    /* Align to bottom */
-    perspective: 1000px;
-    z-index: -5;
-    /* Way back */
+    perspective: 800px;
+    z-index: -10;
+    /* Behind absolutely everything */
     pointer-events: none;
-    /* Let clicks pass through to content */
     overflow: hidden;
+    /* Fade out the top so it doesn't clash with text */
+    -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 60%);
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 60%);
 }
 
 #nesting-animation-container {
-    width: 2500px;
-    /* 5x Scale (SVG base is ~600, so massive) */
-    height: 1500px;
+    width: 2000px;
+    height: 1200px;
     position: relative;
-    /* Floor perspective: Flat on ground */
-    transform: rotateX(70deg) scale(2.0);
+    transform: rotateX(65deg) translateY(100px);
     transform-style: preserve-3d;
-    transition: transform 0.1s ease-out;
-    /* Snappier response for mouse move */
-    opacity: 0.5;
-    /* Texture feel */
+    transition: transform 0.2s ease-out;
+    opacity: 0.4;
+    /* Very subtle texture */
 }
 
 #nesting-animation-container svg {
