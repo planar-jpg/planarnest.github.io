@@ -1,14 +1,15 @@
 :root {
-    --bg-dark: #000212;
-    /* Linear-style deep navy/black */
-    --bg-card: rgba(255, 255, 255, 0.03);
-    --border: rgba(255, 255, 255, 0.08);
-    /* Extremely subtle border */
+    --bg-dark: #0a0a0f;
+    /* Linear-style true black */
+    --bg-card: rgba(255, 255, 255, 0.02);
+    --border: rgba(255, 255, 255, 0.06);
     --primary: #5e6ad2;
-    --primary-glow: rgba(94, 106, 210, 0.5);
-    --text-main: #f7f8f8;
-    --text-muted: #8a8f98;
-    --accent: #b4abd4;
+    --primary-light: #8b93ff;
+    --primary-glow: rgba(94, 106, 210, 0.4);
+    --text-main: #e8e8ed;
+    --text-muted: #6b6f76;
+    --accent-purple: #a78bfa;
+    --accent-teal: #2dd4bf;
 }
 
 h1,
@@ -45,9 +46,8 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Transparent noise SVG */
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.03;
     pointer-events: none;
     z-index: 9999;
     mix-blend-mode: overlay;
@@ -115,16 +115,15 @@ body::before {
 
 .spotlight {
     position: absolute;
-    top: 0;
+    top: -100px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100%;
-    max-width: 1200px;
-    height: 700px;
-    background: radial-gradient(circle at top, rgba(94, 106, 210, 0.25), transparent 60%);
+    width: 140%;
+    max-width: 1400px;
+    height: 800px;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(94, 106, 210, 0.15), transparent 50%);
     z-index: -1;
     pointer-events: none;
-    filter: blur(60px);
 }
 
 .container {
@@ -377,62 +376,65 @@ body::before {
 }
 
 /* --- Hero Visual (Nesting Animation) --- */
-/* --- Hero Visual (Nesting Animation) --- */
-/* --- Hero Visual (Nesting Animation) --- */
 .hero-visual {
     position: fixed;
-    /* Global background floor */
     bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 60vh;
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    perspective: 800px;
+    perspective: 1000px;
     z-index: -10;
-    /* Behind absolutely everything */
     pointer-events: none;
-    overflow: hidden;
-    /* Fade out the top so it doesn't clash with text */
-    -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 60%);
-    mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, transparent 60%);
+    overflow: visible;
+    /* Fade out top for text readability */
+    -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 30%, transparent 80%);
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 30%, transparent 80%);
 }
 
 #nesting-animation-container {
-    width: 2000px;
-    height: 1200px;
-    position: relative;
-    transform: rotateX(65deg) translateY(100px);
+    width: 100vw;
+    max-width: 1600px;
+    height: 600px;
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%) rotateX(70deg);
+    transform-origin: center bottom;
     transform-style: preserve-3d;
-    transition: transform 0.2s ease-out;
-    opacity: 0.4;
-    /* Very subtle texture */
+    transition: transform 0.3s ease-out;
+    opacity: 0.5;
 }
 
 #nesting-animation-container svg {
     width: 100%;
     height: 100%;
     overflow: visible;
-    /* Allow parts to fly in from outside */
+    /* Center the actual content within viewBox */
+    display: block;
+    margin: 0 auto;
 }
 
 /* Parts Styling */
 #nesting-animation-container path {
     vector-effect: non-scaling-stroke;
-    fill: rgba(255, 255, 255, 0.05);
-    /* Glassy fill */
-    stroke-width: 1px;
-    stroke-opacity: 0.8;
-    transition: all 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-    /* Apple-style ease out */
+    fill: rgba(94, 106, 210, 0.03);
+    stroke: rgba(139, 147, 255, 0.4);
+    stroke-width: 0.8px;
+    stroke-opacity: 0.6;
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, opacity;
+    filter: drop-shadow(0 0 2px rgba(94, 106, 210, 0.2));
 }
 
 /* Hover effect on parts once assembled */
 #nesting-animation-container path:hover {
-    fill: rgba(255, 255, 255, 0.2);
-    filter: drop-shadow(0 0 8px currentColor);
+    fill: rgba(94, 106, 210, 0.08);
+    stroke: rgba(139, 147, 255, 0.8);
+    filter: drop-shadow(0 0 12px rgba(94, 106, 210, 0.5));
     cursor: pointer;
 }
 

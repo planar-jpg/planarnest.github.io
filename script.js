@@ -4,20 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (heroContainer) {
         document.addEventListener('mousemove', (e) => {
-            const xPos = (e.clientX / window.innerWidth - 0.5) * 50; // -25 to 25deg
-            const yPos = (e.clientY / window.innerHeight - 0.5) * 50;
+            const xPos = (e.clientX / window.innerWidth - 0.5) * 2; // -1 to 1
+            const yPos = (e.clientY / window.innerHeight - 0.5) * 2;
 
-            // Compose with the base tilt (Floor Mode)
-            // Base: rotateX(65deg)
-            // We reduce the Y-rotation (leaning left/right) significantly to prevent "drift"
-            const tiltX = 65 - yPos * 0.1; // Front/Back tilt
-            const tiltY = xPos * 0.05;     // Left/Right tilt (Very subtle)
+            // Subtle parallax - keep centered with translateX(-50%)
+            const tiltX = 70 - yPos * 3; // Base 70deg ± 3deg
+            const tiltY = xPos * 2;       // Very subtle left/right
 
             heroContainer.style.transform = `
+                translateX(-50%) 
                 rotateX(${tiltX}deg) 
-                rotateY(${tiltY}deg) 
-                translateY(100px)
-                translateX(0px) /* Force Center */
+                rotateY(${tiltY}deg)
             `;
         });
     }
