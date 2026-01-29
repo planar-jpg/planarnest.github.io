@@ -10,6 +10,7 @@
     --text-muted: #6b6f76;
     --accent-purple: #a78bfa;
     --accent-teal: #2dd4bf;
+    --ease-elastic: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 h1,
@@ -164,6 +165,19 @@ body::before {
     }
 }
 
+/* --- Scroll Reveal --- */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+    transition: opacity 0.8s var(--ease-elastic), transform 0.8s var(--ease-elastic);
+    will-change: opacity, transform;
+}
+
+.reveal-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
 /* --- Navbar --- */
 .navbar {
     padding: 24px 0;
@@ -314,9 +328,25 @@ body::before {
 
 .gradient-text {
     background: linear-gradient(135deg, #a78bfa 0%, #6366f1 50%, #2dd4bf 100%);
+    background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: gradientFlow 8s ease infinite;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .hero-description {
@@ -484,7 +514,10 @@ body::before {
     padding: 32px;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform 0.1s linear;
+    /* Fast response for tilt */
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
 /* Gradient Border (Top-down light) */
