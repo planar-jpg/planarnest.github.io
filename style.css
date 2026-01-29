@@ -145,7 +145,8 @@ h3 {
 
 /* --- Navbar --- */
 .navbar {
-    position: fixed;
+    position: absolute;
+    /* Changed from fixed to absolute so it stays at the top */
     top: 0;
     width: 100%;
     z-index: 1000;
@@ -318,7 +319,8 @@ h3 {
 #nesting-animation-container {
     width: 100%;
     height: 100%;
-    opacity: 0.9; /* Increased visibility */
+    opacity: 0.9;
+    /* Increased visibility */
     /* Flat 2D view, no rotation */
     transform: scale(0.9);
     mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
