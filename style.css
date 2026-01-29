@@ -365,7 +365,7 @@ h3 {
     flex-direction: column;
     justify-content: space-between;
     transition: all 0.4s var(--ease-elastic);
-    min-height: 340px;
+    min-height: 220px;
     position: relative;
     overflow: hidden;
 }
