@@ -137,20 +137,24 @@ body::before {
 /* --- Entrance Animations --- */
 .fade-in-up {
     opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    transform: translateY(30px);
+    animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .delay-1 {
-    animation-delay: 0.1s;
+    animation-delay: 0.15s;
 }
 
 .delay-2 {
-    animation-delay: 0.2s;
+    animation-delay: 0.3s;
 }
 
 .delay-3 {
-    animation-delay: 0.3s;
+    animation-delay: 0.45s;
+}
+
+.delay-4 {
+    animation-delay: 0.6s;
 }
 
 @keyframes fadeInUp {
@@ -293,39 +297,35 @@ body::before {
 }
 
 .hero-title {
-    font-size: 5rem;
-    line-height: 1;
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    margin-bottom: 24px;
-    background: linear-gradient(180deg, #fff 20%, #777 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-family: 'Outfit', sans-serif;
+    font-size: 4.5rem;
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+    color: #ffffff;
 }
 
 @media (max-width: 768px) {
     .hero-title {
-        font-size: 3.5rem;
+        font-size: 2.8rem;
     }
 }
 
 .gradient-text {
-    background: linear-gradient(90deg, #8E2DE2 0%, #4A00E0 100%);
-    /* Strong purple */
-    background: linear-gradient(to right, #a78bfa, #2dd4bf);
-    /* Modern Purple-Teal */
+    background: linear-gradient(135deg, #a78bfa 0%, #6366f1 50%, #2dd4bf 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    padding-right: 0.1em;
-    /* Fix cut-off italics if any */
+    background-clip: text;
 }
 
 .hero-description {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     color: var(--text-muted);
-    max-width: 540px;
-    margin: 0 auto 40px;
-    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+    font-weight: 400;
 }
 
 /* Hero Actions */
