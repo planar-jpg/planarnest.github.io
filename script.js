@@ -4,17 +4,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (heroContainer) {
         document.addEventListener('mousemove', (e) => {
-            const xPos = (e.clientX / window.innerWidth - 0.5) * 2; // -1 to 1
+            const xPos = (e.clientX / window.innerWidth - 0.5) * 2;
             const yPos = (e.clientY / window.innerHeight - 0.5) * 2;
 
-            // Subtle parallax - keep centered with translateX(-50%)
-            const tiltX = 70 - yPos * 3; // Base 70deg ± 3deg
-            const tiltY = xPos * 2;       // Very subtle left/right
+            // Keep 90deg rotation + 5x scale, add subtle parallax
+            const tiltX = 70 - yPos * 2;
+            const tiltY = xPos * 1.5;
 
             heroContainer.style.transform = `
                 translateX(-50%) 
                 rotateX(${tiltX}deg) 
                 rotateY(${tiltY}deg)
+                rotateZ(90deg)
+                scale(5)
             `;
         });
     }
