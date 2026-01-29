@@ -316,12 +316,12 @@ h3 {
 }
 
 #nesting-animation-container {
-    width: 120%;
+    width: 100%;
     height: 100%;
-    opacity: 0.5;
-    /* Rotation to make it look like a floor or wall */
-    transform: rotateX(20deg) rotateZ(-10deg) translateX(20%);
-    mask-image: linear-gradient(to bottom, black 20%, transparent 100%);
+    opacity: 0.9; /* Increased visibility */
+    /* Flat 2D view, no rotation */
+    transform: scale(0.9);
+    mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
 }
 
 #nesting-animation-container svg {

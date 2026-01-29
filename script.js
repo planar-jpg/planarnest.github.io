@@ -101,12 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 svg.removeAttribute('width');
                 svg.removeAttribute('height');
 
-                // Style the paths for the dark theme
+                // Style the paths for the dark theme (Increased visibility)
                 const paths = Array.from(svg.querySelectorAll('path'));
                 paths.forEach((path, i) => {
-                    path.style.fill = 'rgba(255,255,255,0.05)';
-                    path.style.stroke = 'rgba(99, 102, 241, 0.4)';
-                    path.style.strokeWidth = '0.5px';
+                    path.style.fill = 'rgba(255,255,255,0.1)'; // Brighter fill
+                    path.style.stroke = 'rgba(129, 140, 248, 0.6)'; // Brighter stroke
+                    path.style.strokeWidth = '1px';
                     path.style.opacity = 0;
                     path.style.transition = 'all 1.5s cubic-bezier(0.19, 1, 0.22, 1)';
 
@@ -116,13 +116,30 @@ document.addEventListener('DOMContentLoaded', () => {
                     path.style.transform = `translate(${rX}px, ${rY}px) scale(0)`;
                 });
 
-                // Assemble
+                // Assemble with Variable Speed
+                // Request: Start slow, accelerate, change speed per group of 10
                 setTimeout(() => {
+                    let accumulatedDelay = 0;
+
                     paths.forEach((path, i) => {
+                        // Current group index (0 for first 10, 1 for next 10...)
+                        const groupIndex = Math.floor(i / 10);
+
+                        // Base interval decreases as groupIndex increases (Acceleration)
+                        // Start slow (e.g., 200ms interval), then faster (down to 10ms)
+                        let interval = Math.max(10, 300 - (groupIndex * 50));
+
+                        // Apply specific speeds for early groups to be dramatic
+                        if (groupIndex === 0) interval = 400; // First 10 parts very slow
+                        else if (groupIndex === 1) interval = 200;
+                        else if (groupIndex === 2) interval = 100;
+
+                        accumulatedDelay += interval;
+
                         setTimeout(() => {
                             path.style.opacity = 1;
                             path.style.transform = 'translate(0,0) scale(1)';
-                        }, i * 3); // Very fast sequence
+                        }, accumulatedDelay);
                     });
                 }, 500);
             });
