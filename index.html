@@ -18,12 +18,12 @@
 </head>
 
 <body>
-    <div class="stars-container">
-        <div class="stars"></div>
-        <div class="stars2"></div>
-        <div class="stars3"></div>
+    <div class="noise-overlay"></div>
+    <div class="ambient-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
     </div>
-    <div class="spotlight"></div>
 
     <nav class="navbar">
         <div class="container">
@@ -33,40 +33,40 @@
             <div class="nav-links">
                 <a href="#features">Features</a>
                 <a href="#pricing">Pricing</a>
-                <a href="#" class="btn btn-sm btn-secondary" style="border-radius: 20px;">v1.0 Beta</a>
+                <a href="#" class="btn btn-sm btn-glass">v1.0 Beta</a>
             </div>
-            <a href="#download" class="btn btn-primary btn-sm">Download</a>
+            <a href="#download" class="btn btn-primary btn-sm magnetic-btn">Download</a>
         </div>
     </nav>
 
     <header class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="pill-badge fade-in-up">
-                    <span class="pill-new">New</span>
-                    <span>v1.0 Beta Release now available</span>
-                </div>
-                <h1 class="hero-title fade-in-up delay-1">
-                    The nesting engine<br>
-                    <span class="gradient-text">built for precision.</span>
-                </h1>
-                <p class="hero-description fade-in-up delay-2">
-                    Stop wasting material. Zero-config nesting that pays for itself in a single job.
-                </p>
-                <div class="hero-actions fade-in-up delay-3">
-                    <a href="#" class="btn btn-primary glow-btn" id="download-btn">
-                        <span>Download for Windows</span>
-                    </a>
-                    <div class="sub-actions">
+        <div class="container fluid-container">
+            <div class="hero-layout">
+                <div class="hero-content reveal-on-scroll">
+                    <div class="pill-badge">
+                        <span class="pill-new">NEW</span>
+                        <span>v1.0 Beta Available</span>
+                    </div>
+                    <h1 class="hero-title">
+                        THE NESTING<br>
+                        ENGINE <span class="gradient-text">BUILT FOR<br>PRECISION.</span>
+                    </h1>
+                    <p class="hero-description">
+                        Stop wasting material. Zero-config nesting that pays for itself in a single job.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#" class="btn btn-xl btn-primary magnetic-btn" id="download-btn">
+                            <span>Download for Windows</span>
+                            <div class="btn-glow"></div>
+                        </a>
                         <span class="sub-text">macOS coming soon</span>
                     </div>
                 </div>
-            </div>
 
-            <div class="hero-visual">
-                <div id="nesting-animation-container"></div>
-                <!-- Fallback/Background glow -->
-                <div class="glow-effect"></div>
+                <!-- Visual pushed to the side/background -->
+                <div class="hero-visual-wrapper reveal-on-scroll delay-2">
+                    <div id="nesting-animation-container"></div>
+                </div>
             </div>
         </div>
     </header>
