@@ -379,6 +379,10 @@ h3 {
     grid-column: span 2;
 }
 
+.span-3 {
+    grid-column: span 3;
+}
+
 .icon-box {
     font-size: 2rem;
     margin-bottom: auto;
@@ -476,7 +480,8 @@ h3 {
         grid-template-columns: 1fr;
     }
 
-    .span-2 {
+    .span-2,
+    .span-3 {
         grid-column: auto;
     }
 }
