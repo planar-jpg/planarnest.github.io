@@ -117,22 +117,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 // Assemble with Variable Speed
-                // Request: Start slow, accelerate, change speed per group of 10
+                // Request: Start slow, accelerate DRAMATICALLY.
+                // Previous logic was grouping by 10, which is too slow for few parts.
+                // New logic: Exponential decay of interval. 
                 setTimeout(() => {
                     let accumulatedDelay = 0;
 
                     paths.forEach((path, i) => {
-                        // Current group index (0 for first 10, 1 for next 10...)
-                        const groupIndex = Math.floor(i / 10);
-
-                        // Base interval decreases as groupIndex increases (Acceleration)
-                        // Start slow (e.g., 200ms interval), then faster (down to 10ms)
-                        let interval = Math.max(10, 300 - (groupIndex * 50));
-
-                        // Apply specific speeds for early groups to be dramatic
-                        if (groupIndex === 0) interval = 400; // First 10 parts very slow
-                        else if (groupIndex === 1) interval = 200;
-                        else if (groupIndex === 2) interval = 100;
+                        // Exponential acceleration:
+                        // Start very slow (600ms), drop rapidly to variable speed limit (10ms)
+                        // Formula: Initial * Math.exp(-decay * index)
+                        // With decay 0.15: 
+                        // i=0: 600ms, i=5: ~280ms, i=10: ~130ms, i=20: ~30ms
+                        let interval = Math.max(20, 600 * Math.exp(-0.15 * i));
 
                         accumulatedDelay += interval;
 
