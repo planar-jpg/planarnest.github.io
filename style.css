@@ -170,7 +170,9 @@ h3 {
 }
 
 .logo-icon {
-    color: var(--accent-teal);
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
 }
 
 .nav-links {
