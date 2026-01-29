@@ -2,24 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Interactive 3D Tilt for Hero Container
     const heroContainer = document.getElementById('nesting-animation-container');
 
-    if (heroContainer) {
-        document.addEventListener('mousemove', (e) => {
-            const xPos = (e.clientX / window.innerWidth - 0.5) * 2;
-            const yPos = (e.clientY / window.innerHeight - 0.5) * 2;
-
-            // Keep 90deg rotation + 5x scale, add subtle parallax
-            const tiltX = 70 - yPos * 2;
-            const tiltY = xPos * 1.5;
-
-            heroContainer.style.transform = `
-                translateX(-50%) 
-                rotateX(${tiltX}deg) 
-                rotateY(${tiltY}deg)
-                rotateZ(90deg)
-                scale(5)
-            `;
-        });
-    }
+    // 2D mode - no mouse tilt effect needed
+    // Animation SVG stays flat as background
 
     // 2. Bento Card Spotlight
     const cards = document.querySelectorAll('.bento-card');

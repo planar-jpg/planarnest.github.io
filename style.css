@@ -397,17 +397,16 @@ body::before {
 
 #nesting-animation-container {
     width: 100vw;
-    max-width: 2000px;
-    height: 800px;
+    max-width: 3000px;
+    height: 400px;
     position: absolute;
-    bottom: -100px;
+    bottom: 0;
     left: 50%;
-    /* 90deg rotation to lay flat + 5x scale + base 3D tilt */
-    transform: translateX(-50%) rotateX(70deg) rotateZ(90deg) scale(5);
+    /* 2D flat - just rotate 90deg and scale */
+    transform: translateX(-50%) rotateZ(90deg) scale(5);
     transform-origin: center center;
-    transform-style: preserve-3d;
-    transition: transform 0.3s ease-out;
-    opacity: 0.6;
+    transition: none;
+    opacity: 0.4;
 }
 
 #nesting-animation-container svg {
