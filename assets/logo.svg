@@ -1,31 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
-  <!-- Concept: Refined 'Efficiency' - Stylized P via Nesting -->
-  <!-- Two distinct interlocking shapes with a clear gap to break the cube silhouette -->
-  <!-- Shape 1 forms the main vertical stem and partial curve -->
-  <!-- Shape 2 forms the inner nest/complement -->
-  
+  <!-- Concept: Sleek Vector Nesting -->
+  <!-- A fluid, modern 'P' shape made of two nesting gradients. -->
+  <!-- No pixelated/blocky edges. Smooth rounded corners and sharp precise cuts. -->
+
   <defs>
-    <linearGradient id="logoGradient" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#4f46e5" /> <!-- Indigo-600 -->
-      <stop offset="1" stop-color="#2dd4bf" /> <!-- Teal-400 -->
+    <linearGradient id="mainGrad" x1="0" y1="100" x2="100" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4f46e5" /> <!-- Indigo -->
+      <stop offset="1" stop-color="#2dd4bf" /> <!-- Teal -->
     </linearGradient>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
   </defs>
 
-  <!-- Shape 1: The 'Stem' and 'Base' (The Container) -->
-  <!-- Dark/Gradient Part -->
-  <path d="M 20 20 L 55 20 L 55 35 L 35 35 L 35 80 L 20 80 Z" 
-        fill="url(#logoGradient)" 
-        fill-opacity="1" />
+  <!-- Main Shape: A rotated, nested geometric form acting as a 'P' -->
+  <!-- Rounded Rect with a slice -->
   
-  <!-- Shape 2: The 'Loop' (The Nested Part) -->
-  <!-- White/Light Part, interlocking but with a gap -->
-  <!-- Moves away from being a perfect square -->
-  <path d="M 60 20 L 85 20 C 90 20 90 55 85 55 L 60 55 L 60 20 Z" 
-        fill="white" 
-        fill-opacity="0.9" />
+  <mask id="cutout">
+    <rect width="100" height="100" fill="white"/>
+    <!-- The cut that creates the nesting separation -->
+    <path d="M 40 40 L 90 40 L 60 90 L 10 90 Z" fill="black" />
+  </mask>
 
-  <!-- Shape 3: small detail to connect or balance -->
-  <!-- A small block nesting into the bottom right -->
-  <rect x="45" y="65" width="15" height="15" fill="rgba(255,255,255,0.2)" />
+  <!-- Shape 1: The Outer Shell (P Stem/Back) -->
+  <path d="M 25 15 C 15 15, 15 25, 15 35 L 15 85 C 15 92, 20 95, 28 90 L 75 90 C 85 90, 85 80, 85 70 L 85 55 L 55 55 C 45 55, 40 50, 40 40 L 40 15 L 25 15 Z" 
+        fill="url(#mainGrad)" />
+
+  <!-- Shape 2: The Inner Nest (The Head of P) -->
+  <!-- Accented, floating inside -->
+  <path d="M 50 15 L 85 15 C 92 15, 95 20, 95 28 L 95 45 C 95 50, 90 50, 88 48 L 50 15 Z" 
+        fill="white" fill-opacity="0.95"/>
+        
+  <!-- Subtle tech lines to emphasize "Precision" -->
+  <circle cx="40" cy="40" r="2" fill="white" fill-opacity="0.8" />
+  <circle cx="85" cy="55" r="2" fill="white" fill-opacity="0.5" />
 
 </svg>
