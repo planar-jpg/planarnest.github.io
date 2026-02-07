@@ -506,10 +506,11 @@ h3 {
 
 .demo-3d-container {
     position: relative;
-    width: 80%;
+    width: 85%;
     /* Wider to show more of the frame */
     max-width: 1200px;
-    aspect-ratio: 16 / 10;
+    /* Precise Aspect Ratio from actual image (1912x1028) */
+    aspect-ratio: 1912 / 1028;
     transform-style: preserve-3d;
     /* Pronounced Linear-style Skew */
     transform: perspective(2500px) rotateX(20deg) rotateY(16deg) rotateZ(-6deg) scale(0.9);
@@ -517,7 +518,6 @@ h3 {
     box-shadow:
         0 30px 60px -12px rgba(0, 0, 0, 0.5),
         0 18px 36px -18px rgba(0, 0, 0, 0.6);
-    /* Layered shadows */
     border-radius: 12px;
     backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -538,7 +538,6 @@ h3 {
     border-radius: 12px;
     overflow: hidden;
     background: #0f0f11;
-    /* Linear Dark Grey */
     /* Subtle Gradient Border simulation */
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
@@ -563,7 +562,7 @@ h3 {
     width: 100%;
     height: 100%;
     object-fit: fill;
-    /* Ensure full frame is visible */
+    /* Now matches aspect ratio perfectly */
     position: absolute;
     top: 0;
     left: 0;
@@ -571,21 +570,22 @@ h3 {
 }
 
 .demo-video {
-    /* Adjusted Position: Higher Up */
+    /* Adjusted Position for 1912x1028 Frame */
     position: absolute;
-    top: 5.5%;
-    /* Moved UP significantly */
-    left: 17%;
-    /* Kept same */
-    width: 83%;
-    height: 94.5%;
-    /* Taller to fill down */
+    top: 3.5%;
+    /* Tightened: Moved UP to 3.5% */
+    left: 17.5%;
+    /* Tightened: Moved RIGHT to 17.5% */
+    width: 82.5%;
+    /* Expanded width to cover right gap */
+    height: 96.5%;
+    /* Expanded height to cover bottom gap */
     object-fit: cover;
     z-index: 2;
     opacity: 1;
     display: block;
-    border-top-left-radius: 6px;
-    /* Edge softening */
+    border-top-left-radius: 8px;
+    /* Matching corner radius */
     mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
 }
 
