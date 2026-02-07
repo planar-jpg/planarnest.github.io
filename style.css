@@ -566,6 +566,69 @@ h3 {
         0 30px 50px -20px rgba(0, 0, 0, 0.5);
 }
 
+.demo-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #0f0f11;
+    /* Subtle Gradient Border simulation */
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Add a gloss sheen */
+.demo-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0) 40%,
+            rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.demo-frame {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    /* Now matches aspect ratio perfectly */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.demo-video {
+    /* Adjusted Position for 1912x1028 Frame */
+    position: absolute;
+    top: 3.5%;
+    /* Tightened: Moved UP to 3.5% */
+    left: 17.5%;
+    /* Tightened: Moved RIGHT to 17.5% */
+    width: 82.5%;
+    /* Expanded width to cover right gap */
+    height: 96.5%;
+    /* Expanded height to cover bottom gap */
+    object-fit: cover;
+    z-index: 2;
+    opacity: 1;
+    display: block;
+    border-top-left-radius: 8px;
+    /* Matching corner radius */
+    mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
+}
+
+/* Overlay & Hint Removed/Hidden */
+.demo-overlay {
+    display: none;
+}
+
 /* Scroll Animation Classes */
 .scroll-animate {
     opacity: 0;
