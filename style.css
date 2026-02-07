@@ -516,6 +516,10 @@ h3 {
     max-width: 500px;
     text-align: left;
     z-index: 10;
+    transform: translateX(-100px);
+    /* Move text left per user request */
+    position: relative;
+    /* Ensure z-index works properly */
 }
 
 .linear-heading {
@@ -542,6 +546,10 @@ h3 {
     /* larger share */
     perspective: 1500px;
     z-index: 5;
+    /* Added mask for melting edges */
+    /* Fades left and right edges to transparent */
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
 
 /* 3D Container (Right Side) */
@@ -555,17 +563,17 @@ h3 {
     aspect-ratio: 1912 / 1028;
     transform-style: preserve-3d;
 
-    /* REFINED LINEAR STYLE OBLIQUE (DIAGONAL) */
-    /* rotateX: 25deg -> Lifted up, not flat */
-    /* rotateY: -15deg -> Turned sideways */
-    /* rotateZ: 8deg -> Subtle diagonal slant */
-    /* scale: 1.15 -> Large, imposing size */
-    transform: perspective(1500px) rotateX(25deg) rotateY(-15deg) rotateZ(8deg) scale(1.15) translateX(30px);
+    /* REVERSED LINEAR STYLE (Left Up, Right Down) */
+    /* rotateX: 25deg -> Lifted up */
+    /* rotateY: 15deg -> Right side away (Opposite of -15) */
+    /* rotateZ: -8deg -> Left side up (Opposite of 8) */
+    /* scale: 1.35 -> Even larger */
+    transform: perspective(1500px) rotateX(25deg) rotateY(15deg) rotateZ(-8deg) scale(1.35) translateX(-50px);
 
     transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
     box-shadow:
-        -20px 40px 80px -20px rgba(0, 0, 0, 0.6),
-        -10px 20px 40px -30px rgba(0, 0, 0, 0.7);
+        20px 40px 80px -20px rgba(0, 0, 0, 0.6),
+        10px 20px 40px -30px rgba(0, 0, 0, 0.7);
     border-radius: 12px;
     backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -573,10 +581,10 @@ h3 {
 
 /* Hover State - Slight lift */
 .demo-3d-container:hover {
-    transform: perspective(1500px) rotateX(20deg) rotateY(-12deg) rotateZ(8deg) scale(1.18) translateX(30px) translateY(-10px);
+    transform: perspective(1500px) rotateX(20deg) rotateY(12deg) rotateZ(-8deg) scale(1.38) translateX(-50px) translateY(-10px);
     box-shadow:
-        -30px 60px 100px -20px rgba(0, 0, 0, 0.7),
-        -15px 30px 60px -30px rgba(0, 0, 0, 0.6);
+        30px 60px 100px -20px rgba(0, 0, 0, 0.7),
+        15px 30px 60px -30px rgba(0, 0, 0, 0.6);
 }
 
 .demo-card {
@@ -667,6 +675,8 @@ h3 {
 
     .demo-text {
         text-align: center;
+        transform: none;
+        /* Reset specific transform on mobile */
     }
 
     .demo-3d-container {
