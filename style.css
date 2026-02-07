@@ -497,105 +497,104 @@ h3 {
 }
 
 .demo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    /* Space between text and video */
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    height: auto;
+    /* Allow height to adjust */
+    min-height: 600px;
+}
+
+/* Typography styles */
+.demo-text {
+    flex: 1;
+    max-width: 500px;
+    text-align: left;
+    z-index: 10;
+}
+
+.linear-heading {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #FFFFFF 0%, #888888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+}
+
+.linear-subtext {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #888888;
+    font-weight: 400;
+}
+
+/* 3D Container (Right Side) */
+.demo-3d-container {
+    flex: 1.5;
+    /* larger share */
+    position: relative;
+    width: auto;
+    /* Reset fixed width */
+    max-width: 1200px;
+    /* Precise Aspect Ratio from actual image (1912x1028) */
+    aspect-ratio: 1912 / 1028;
+    transform-style: preserve-3d;
+    /* Pronounced Linear-style Skew - Flipped Y/Z for right side placement */
+    transform: perspective(2500px) rotateX(20deg) rotateY(-16deg) rotateZ(6deg) scale(0.9);
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
+    box-shadow:
+        0 40px 80px -12px rgba(0, 0, 0, 0.5),
+        0 20px 40px -18px rgba(0, 0, 0, 0.6);
+    border-radius: 12px;
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Hover State */
+.demo-3d-container:hover {
+    transform: perspective(2500px) rotateX(20deg) rotateY(-16deg) rotateZ(6deg) scale(0.95) translateY(-20px);
+    box-shadow:
+        0 50px 90px -20px rgba(0, 0, 0, 0.6),
+        0 30px 50px -20px rgba(0, 0, 0, 0.5);
+}
+
+/* Scroll Animation Classes */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-200 {
+    transition-delay: 0.2s;
+}
+
+@media(max-width: 768px) {
     .demo-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 60px;
-        /* Space between text and video */
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 40px;
-        height: auto;
-        /* Allow height to adjust */
-        min-height: 600px;
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
     }
 
-    /* Typography styles */
     .demo-text {
-        flex: 1;
-        max-width: 500px;
-        text-align: left;
-        z-index: 10;
+        text-align: center;
     }
 
-    .linear-heading {
-        font-size: 3.5rem;
-        font-weight: 700;
-        line-height: 1.1;
-        margin-bottom: 24px;
-        background: linear-gradient(135deg, #FFFFFF 0%, #888888 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        letter-spacing: -0.02em;
-    }
-
-    .linear-subtext {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        color: #888888;
-        font-weight: 400;
-    }
-
-    /* 3D Container (Right Side) */
     .demo-3d-container {
-        flex: 1.5;
-        /* larger share */
-        position: relative;
-        width: auto;
-        /* Reset fixed width */
-        max-width: 1200px;
-        /* Precise Aspect Ratio from actual image (1912x1028) */
-        aspect-ratio: 1912 / 1028;
-        transform-style: preserve-3d;
-        /* Pronounced Linear-style Skew - Flipped Y/Z for right side placement */
-        transform: perspective(2500px) rotateX(20deg) rotateY(-16deg) rotateZ(6deg) scale(0.9);
-        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
-        box-shadow:
-            0 40px 80px -12px rgba(0, 0, 0, 0.5),
-            0 20px 40px -18px rgba(0, 0, 0, 0.6);
-        border-radius: 12px;
-        backface-visibility: hidden;
-        -webkit-font-smoothing: subpixel-antialiased;
+        width: 100%;
+        transform: rotateX(20deg) scale(0.95);
     }
-
-    /* Hover State */
-    .demo-3d-container:hover {
-        transform: perspective(2500px) rotateX(20deg) rotateY(-16deg) rotateZ(6deg) scale(0.95) translateY(-20px);
-        box-shadow:
-            0 50px 90px -20px rgba(0, 0, 0, 0.6),
-            0 30px 50px -20px rgba(0, 0, 0, 0.5);
-    }
-
-    /* Scroll Animation Classes */
-    .scroll-animate {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .scroll-animate.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .delay-200 {
-        transition-delay: 0.2s;
-    }
-
-    @media(max-width: 768px) {
-        .demo-wrapper {
-            flex-direction: column;
-            text-align: center;
-            gap: 40px;
-        }
-
-        .demo-text {
-            text-align: center;
-        }
-
-        .demo-3d-container {
-            width: 100%;
-            transform: rotateX(20deg) scale(0.95);
-        }
-    }
+}

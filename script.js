@@ -150,8 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
     });
-    // --- 7. Demo Video Interaction ---
-    // Scroll Animation Observer
+    // --- 7. Scroll Animation & Video Interaction ---
+
+    // Scroll Observer
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -162,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // Animate only once
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
@@ -170,19 +171,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.scroll-animate');
     animatedElements.forEach(el => scrollObserver.observe(el));
 
-    // --- 7. Demo Video Interaction ---
+    // Video Interaction Logic
     const demoContainer = document.querySelector('.demo-3d-container');
     const demoVideo = document.getElementById('demoVideo');
 
     if (demoContainer && demoVideo) {
         demoContainer.addEventListener('mouseenter', () => {
-            // demoVideo.currentTime = 0; // Removing reset to allow continuity or immediate play
             demoVideo.play().catch(e => console.log('Autoplay prevented:', e));
         });
 
         demoContainer.addEventListener('mouseleave', () => {
             demoVideo.pause();
-            // demoVideo.currentTime = 0; // Don't reset, just pause
         });
     }
 });
