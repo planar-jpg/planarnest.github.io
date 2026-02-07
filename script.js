@@ -153,23 +153,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 7. Scroll Animation & Video Interaction ---
 
     // Scroll Observer
-    const observerOptions = {
+    const demoObserverOptions = {
         root: null,
         rootMargin: '0px',
         threshold: 0.15
     };
 
-    const scrollObserver = new IntersectionObserver((entries, observer) => {
+    const demoScrollObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
                 observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, demoObserverOptions);
 
     const animatedElements = document.querySelectorAll('.scroll-animate');
-    animatedElements.forEach(el => scrollObserver.observe(el));
+    animatedElements.forEach(el => demoScrollObserver.observe(el));
 
     // Video Interaction Logic
     const demoContainer = document.querySelector('.demo-3d-container');
