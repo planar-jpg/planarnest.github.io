@@ -491,7 +491,7 @@ h3 {
 ------------------------------------------------------------------ */
 .demo-section {
     padding: 60px 0 120px 0;
-    perspective: 1200px;
+    perspective: 1500px;
     /* Enable 3D space */
     overflow: hidden;
 }
@@ -548,27 +548,28 @@ h3 {
     aspect-ratio: 1912 / 1028;
     transform-style: preserve-3d;
 
-    /* TRUE LINEAR OBLIQUE STYLE */
-    /* rotateX(60deg) -> Very strong "laid down" effect */
-    /* rotateZ(30deg) -> Sharp diagonal angle */
-    /* rotateY(-10deg) -> Subtle perspective depth */
-    transform: perspective(1500px) rotateX(60deg) rotateZ(30deg) rotateY(-10deg) scale(0.8) translateX(100px) translateY(-50px);
+    /* REFINED LINEAR STYLE OBLIQUE (DIAGONAL) */
+    /* rotateX: 25deg -> Lifted up, not flat */
+    /* rotateY: -15deg -> Turned sideways */
+    /* rotateZ: 8deg -> Subtle diagonal slant */
+    /* scale: 1.15 -> Large, imposing size */
+    transform: perspective(1500px) rotateX(25deg) rotateY(-15deg) rotateZ(8deg) scale(1.15) translateX(30px);
 
     transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
     box-shadow:
-        -30px 60px 100px -20px rgba(0, 0, 0, 0.6),
-        -15px 40px 60px -30px rgba(0, 0, 0, 0.7);
+        -20px 40px 80px -20px rgba(0, 0, 0, 0.6),
+        -10px 20px 40px -30px rgba(0, 0, 0, 0.7);
     border-radius: 12px;
     backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
 }
 
-/* Hover State - Lift up vertically */
+/* Hover State - Slight lift */
 .demo-3d-container:hover {
-    transform: perspective(1500px) rotateX(55deg) rotateZ(30deg) rotateY(-10deg) scale(0.85) translateX(100px) translateY(-80px);
+    transform: perspective(1500px) rotateX(20deg) rotateY(-12deg) rotateZ(8deg) scale(1.18) translateX(30px) translateY(-10px);
     box-shadow:
-        -40px 80px 140px -30px rgba(0, 0, 0, 0.7),
-        -20px 50px 80px -40px rgba(0, 0, 0, 0.6);
+        -30px 60px 100px -20px rgba(0, 0, 0, 0.7),
+        -15px 30px 60px -30px rgba(0, 0, 0, 0.6);
 }
 
 .demo-card {
