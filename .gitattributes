@@ -1,0 +1,19 @@
+* text=auto
+
+# Enforce LF line endings for source files (Windows-friendly).
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.svg text eol=lf
+CNAME text eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webm binary
+*.mp4 binary
+*.ico binary
