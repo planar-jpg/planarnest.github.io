@@ -150,4 +150,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
     });
+    // --- 7. Demo Video Interaction ---
+    const demoContainer = document.querySelector('.demo-3d-container');
+    const demoVideo = document.querySelector('.demo-video');
+
+    if (demoContainer && demoVideo) {
+        demoContainer.addEventListener('mouseenter', () => {
+            demoVideo.currentTime = 0; // Restart from beginning
+            demoVideo.play().catch(e => console.log('Autoplay prevented:', e));
+        });
+
+        demoContainer.addEventListener('mouseleave', () => {
+            demoVideo.pause();
+            demoVideo.currentTime = 0; // Reset
+        });
+    }
 });
