@@ -74,12 +74,21 @@
     <section id="demo-video" class="demo-section">
         <div class="container">
             <div class="demo-wrapper">
-                <div class="demo-3d-container">
+                <div class="demo-text scroll-animate">
+                    <h2 class="linear-heading">Built for Speed,<br>Designed for Focus.</h2>
+                    <p class="linear-subtext">Experience a new dimension of workflow efficiency. Every interaction is
+                        crafted for fluid motion and instant feedback.</p>
+                </div>
+                <!-- Right Side: 3D Video -->
+                <div class="demo-3d-container scroll-animate delay-200">
                     <div class="demo-card">
                         <img src="assets/demo-frame.png" alt="PlanarNest UI" class="demo-frame">
-                        <video src="assets/fatball_20s_2x_720w.mp4" class="demo-video" loop muted playsinline></video>
+                        <video id="demoVideo" class="demo-video" muted playsinline loop preload="auto">
+                            <source src="assets/fatball_20s_2x_720w.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                         <div class="demo-overlay">
-                            <span class="demo-hint">Hover to Watch</span>
+                            <!-- Hint removed as requested -->
                         </div>
                     </div>
                 </div>

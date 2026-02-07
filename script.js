@@ -151,18 +151,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     // --- 7. Demo Video Interaction ---
+    // Scroll Animation Observer
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
+
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Animate only once
+            }
+        });
+    }, observerOptions);
+
+    const animatedElements = document.querySelectorAll('.scroll-animate');
+    animatedElements.forEach(el => scrollObserver.observe(el));
+
+    // --- 7. Demo Video Interaction ---
     const demoContainer = document.querySelector('.demo-3d-container');
-    const demoVideo = document.querySelector('.demo-video');
+    const demoVideo = document.getElementById('demoVideo');
 
     if (demoContainer && demoVideo) {
         demoContainer.addEventListener('mouseenter', () => {
-            demoVideo.currentTime = 0; // Restart from beginning
+            // demoVideo.currentTime = 0; // Removing reset to allow continuity or immediate play
             demoVideo.play().catch(e => console.log('Autoplay prevented:', e));
         });
 
         demoContainer.addEventListener('mouseleave', () => {
             demoVideo.pause();
-            demoVideo.currentTime = 0; // Reset
+            // demoVideo.currentTime = 0; // Don't reset, just pause
         });
     }
 });

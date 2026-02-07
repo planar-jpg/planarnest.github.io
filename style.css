@@ -497,120 +497,105 @@ h3 {
 }
 
 .demo-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 600px;
-    /* Adjust based on asset aspect ratio */
-}
-
-.demo-3d-container {
-    position: relative;
-    width: 85%;
-    /* Wider to show more of the frame */
-    max-width: 1200px;
-    /* Precise Aspect Ratio from actual image (1912x1028) */
-    aspect-ratio: 1912 / 1028;
-    transform-style: preserve-3d;
-    /* Pronounced Linear-style Skew */
-    transform: perspective(2500px) rotateX(20deg) rotateY(16deg) rotateZ(-6deg) scale(0.9);
-    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
-    box-shadow:
-        0 30px 60px -12px rgba(0, 0, 0, 0.5),
-        0 18px 36px -18px rgba(0, 0, 0, 0.6);
-    border-radius: 12px;
-    backface-visibility: hidden;
-    -webkit-font-smoothing: subpixel-antialiased;
-}
-
-/* Hover State: Lift up but keep the dramatic angle */
-.demo-3d-container:hover {
-    transform: perspective(2500px) rotateX(20deg) rotateY(16deg) rotateZ(-6deg) scale(0.95) translateY(-20px);
-    box-shadow:
-        0 45px 80px -20px rgba(0, 0, 0, 0.6),
-        0 24px 40px -20px rgba(0, 0, 0, 0.5);
-}
-
-.demo-card {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #0f0f11;
-    /* Subtle Gradient Border simulation */
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-}
-
-/* Add a gloss sheen */
-.demo-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.1) 0%,
-            rgba(255, 255, 255, 0) 40%,
-            rgba(255, 255, 255, 0) 100%);
-    pointer-events: none;
-    z-index: 5;
-}
-
-.demo-frame {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    /* Now matches aspect ratio perfectly */
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-}
-
-.demo-video {
-    /* Adjusted Position for 1912x1028 Frame */
-    position: absolute;
-    top: 3.5%;
-    /* Tightened: Moved UP to 3.5% */
-    left: 17.5%;
-    /* Tightened: Moved RIGHT to 17.5% */
-    width: 82.5%;
-    /* Expanded width to cover right gap */
-    height: 96.5%;
-    /* Expanded height to cover bottom gap */
-    object-fit: cover;
-    z-index: 2;
-    opacity: 1;
-    display: block;
-    border-top-left-radius: 8px;
-    /* Matching corner radius */
-    mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
-}
-
-/* Overlay & Hint Removed/Hidden */
-.demo-overlay {
-    display: none;
-}
-
-.demo-hint {
-    display: none;
-}
-
-/* Responsive adjustments */
-@media(max-width: 768px) {
-    .demo-section {
-        padding: 40px 0;
-        perspective: 800px;
-    }
-
     .demo-wrapper {
-        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 60px;
+        /* Space between text and video */
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+        height: auto;
+        /* Allow height to adjust */
+        min-height: 600px;
     }
 
-    /* Default to flat on mobile? Or keep slight tilt? */
-    .demo-3d-container {
-        transform: rotateX(20deg) scale(0.95);
+    /* Typography styles */
+    .demo-text {
+        flex: 1;
+        max-width: 500px;
+        text-align: left;
+        z-index: 10;
     }
-}
+
+    .linear-heading {
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 24px;
+        background: linear-gradient(135deg, #FFFFFF 0%, #888888 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.02em;
+    }
+
+    .linear-subtext {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #888888;
+        font-weight: 400;
+    }
+
+    /* 3D Container (Right Side) */
+    .demo-3d-container {
+        flex: 1.5;
+        /* larger share */
+        position: relative;
+        width: auto;
+        /* Reset fixed width */
+        max-width: 1200px;
+        /* Precise Aspect Ratio from actual image (1912x1028) */
+        aspect-ratio: 1912 / 1028;
+        transform-style: preserve-3d;
+        /* Pronounced Linear-style Skew - Flipped Y/Z for right side placement */
+        transform: perspective(2500px) rotateX(20deg) rotateY(-16deg) rotateZ(6deg) scale(0.9);
+        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
+        box-shadow:
+            0 40px 80px -12px rgba(0, 0, 0, 0.5),
+            0 20px 40px -18px rgba(0, 0, 0, 0.6);
+        border-radius: 12px;
+        backface-visibility: hidden;
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+
+    /* Hover State */
+    .demo-3d-container:hover {
+        transform: perspective(2500px) rotateX(20deg) rotateY(-16deg) rotateZ(6deg) scale(0.95) translateY(-20px);
+        box-shadow:
+            0 50px 90px -20px rgba(0, 0, 0, 0.6),
+            0 30px 50px -20px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Scroll Animation Classes */
+    .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .scroll-animate.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .delay-200 {
+        transition-delay: 0.2s;
+    }
+
+    @media(max-width: 768px) {
+        .demo-wrapper {
+            flex-direction: column;
+            text-align: center;
+            gap: 40px;
+        }
+
+        .demo-text {
+            text-align: center;
+        }
+
+        .demo-3d-container {
+            width: 100%;
+            transform: rotateX(20deg) scale(0.95);
+        }
+    }
