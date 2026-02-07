@@ -547,23 +547,24 @@ h3 {
     /* Precise Aspect Ratio from actual image (1912x1028) */
     aspect-ratio: 1912 / 1028;
     transform-style: preserve-3d;
-    /* Pronounced Linear-style Skew - Flipped Y/Z for right side placement */
-    transform: perspective(2500px) rotateX(20deg) rotateY(-16deg) rotateZ(6deg) scale(0.9);
+    /* DRAMATIC Linear-style Skew: High RotateX to "lie down", Adjusted Perspective */
+    /* Increased rotateX to 45deg and Z rotation for that signature "laid back" look */
+    transform: perspective(2000px) rotateX(45deg) rotateY(-8deg) rotateZ(12deg) scale(0.9) translateX(30px);
     transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
     box-shadow:
-        0 40px 80px -12px rgba(0, 0, 0, 0.5),
-        0 20px 40px -18px rgba(0, 0, 0, 0.6);
+        0 60px 100px -20px rgba(0, 0, 0, 0.6),
+        0 40px 60px -30px rgba(0, 0, 0, 0.7);
     border-radius: 12px;
     backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
 }
 
-/* Hover State */
+/* Hover State - Lift slightly but keep the tilt */
 .demo-3d-container:hover {
-    transform: perspective(2500px) rotateX(20deg) rotateY(-16deg) rotateZ(6deg) scale(0.95) translateY(-20px);
+    transform: perspective(2000px) rotateX(40deg) rotateY(-6deg) rotateZ(10deg) scale(0.95) translateX(30px) translateY(-20px);
     box-shadow:
-        0 50px 90px -20px rgba(0, 0, 0, 0.6),
-        0 30px 50px -20px rgba(0, 0, 0, 0.5);
+        0 80px 140px -30px rgba(0, 0, 0, 0.7),
+        0 50px 80px -40px rgba(0, 0, 0, 0.6);
 }
 
 .demo-card {
