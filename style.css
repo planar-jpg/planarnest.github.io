@@ -536,10 +536,17 @@ h3 {
     font-weight: 400;
 }
 
-/* 3D Container (Right Side) */
-.demo-3d-container {
+/* 3D Wrapper (Handles Scroll Anim) */
+.demo-3d-wrapper {
     flex: 1.5;
     /* larger share */
+    perspective: 1500px;
+    z-index: 5;
+}
+
+/* 3D Container (Right Side) */
+.demo-3d-container {
+    /* flex: 1.5; removed, handled by wrapper */
     position: relative;
     width: auto;
     /* Reset fixed width */
