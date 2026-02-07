@@ -506,25 +506,29 @@ h3 {
 
 .demo-3d-container {
     position: relative;
-    width: 75%;
-    /* Increased width */
-    max-width: 1100px;
+    width: 80%;
+    /* Wider to show more of the frame */
+    max-width: 1200px;
     aspect-ratio: 16 / 10;
     transform-style: preserve-3d;
-    /* Permanent Linear-style Skew */
-    transform: perspective(2000px) rotateX(12deg) rotateY(12deg) rotateZ(-4deg) scale(0.95);
+    /* Pronounced Linear-style Skew */
+    transform: perspective(2500px) rotateX(20deg) rotateY(16deg) rotateZ(-6deg) scale(0.9);
     transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
-    box-shadow: 20px 40px 80px -10px rgba(0, 0, 0, 0.6);
+    box-shadow:
+        0 30px 60px -12px rgba(0, 0, 0, 0.5),
+        0 18px 36px -18px rgba(0, 0, 0, 0.6);
+    /* Layered shadows */
     border-radius: 12px;
-    /* Hardware acceleration */
     backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
 }
 
-/* Hover State: Keep tilted, just float up slightly */
+/* Hover State: Lift up but keep the dramatic angle */
 .demo-3d-container:hover {
-    transform: perspective(2000px) rotateX(12deg) rotateY(12deg) rotateZ(-4deg) scale(1) translateY(-10px);
-    box-shadow: 30px 60px 100px -10px rgba(0, 0, 0, 0.7);
+    transform: perspective(2500px) rotateX(20deg) rotateY(16deg) rotateZ(-6deg) scale(0.95) translateY(-20px);
+    box-shadow:
+        0 45px 80px -20px rgba(0, 0, 0, 0.6),
+        0 24px 40px -20px rgba(0, 0, 0, 0.5);
 }
 
 .demo-card {
@@ -533,8 +537,26 @@ h3 {
     height: 100%;
     border-radius: 12px;
     overflow: hidden;
-    background: #1a1a1a;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #0f0f11;
+    /* Linear Dark Grey */
+    /* Subtle Gradient Border simulation */
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Add a gloss sheen */
+.demo-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0) 40%,
+            rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
+    z-index: 5;
 }
 
 .demo-frame {
@@ -549,21 +571,22 @@ h3 {
 }
 
 .demo-video {
-    /* Adjusted Position: Slightly Up and Left */
+    /* Adjusted Position: Higher Up */
     position: absolute;
-    top: 7.5%;
-    /* Moved up from 8.5% */
+    top: 5.5%;
+    /* Moved UP significantly */
     left: 17%;
-    /* Moved left from 18% */
+    /* Kept same */
     width: 83%;
-    /* Slightly wider */
-    height: 92.5%;
-    /* Slightly taller */
+    height: 94.5%;
+    /* Taller to fill down */
     object-fit: cover;
     z-index: 2;
     opacity: 1;
     display: block;
     border-top-left-radius: 6px;
+    /* Edge softening */
+    mask-image: linear-gradient(to bottom, black 95%, transparent 100%);
 }
 
 /* Overlay & Hint Removed/Hidden */
