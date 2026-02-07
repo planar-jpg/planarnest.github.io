@@ -488,9 +488,10 @@ h3 {
 
 /* --- 8. DEMO VIDEO SECTION (Refined Linear Style) --- */
 .demo-section {
-    padding: 60px 0 120px 0;
-    perspective: 2000px;
-    /* 원근감을 조금 더 깊게 주어 왜곡을 줄임 */
+    padding: 100px 0 160px;
+    /* 여백을 더 주어 웅장하게 */
+    perspective: 2500px;
+    /* 원근감을 더 멀리 줘서 왜곡을 줄이고 고급스럽게 */
     overflow: hidden;
 }
 
@@ -498,155 +499,147 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 80px;
-    /* 간격 넓힘 */
+    gap: 60px;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 40px;
-    min-height: 600px;
+    /* 높이 제한을 풀어 자연스럽게 배치 */
+    position: relative;
 }
 
 .demo-text {
     flex: 0.8;
-    /* 텍스트 영역 비율 조정 */
     z-index: 10;
     text-align: left;
+    padding-top: 40px;
+    /* 시각적 밸런스 */
 }
 
 .linear-heading {
-    font-size: 3.5rem;
+    font-size: 4rem;
+    /* 폰트 사이즈 키움 */
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.05;
     margin-bottom: 24px;
-    background: linear-gradient(135deg, #FFFFFF 0%, #888888 100%);
+    /* 텍스트 그라데이션을 더 명확하게 */
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
 }
 
 .linear-subtext {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.6;
-    color: #888888;
+    color: var(--text-muted);
     font-weight: 400;
+    max-width: 480px;
 }
 
 .demo-3d-wrapper {
-    flex: 1.2;
+    flex: 1.3;
+    /* 이미지 영역을 더 넓게 */
     position: relative;
     z-index: 5;
-    /* 핵심 수정 1: 마스크 방향 변경 */
-    /* 좌우가 아니라, '오른쪽'과 '아래쪽'으로 갈수록 자연스럽게 사라지게 처리 */
-    mask-image: linear-gradient(135deg, black 40%, transparent 95%);
-    -webkit-mask-image: linear-gradient(135deg, black 40%, transparent 95%);
+    /* 마스크 제거: 이미지가 너무 흐려지는 원인 제거 */
+    /* 대신 바닥 부분만 살짝 페이드아웃 */
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 
-    /* 배치 보정 */
-    transform: translateX(20px);
+    display: flex;
+    justify-content: center;
+    perspective: 2000px;
+    /* 자체 투시도 추가 */
 }
 
 .demo-3d-container {
     position: relative;
     width: 100%;
-    max-width: 1200px;
-    aspect-ratio: 1912 / 1028;
-    transform-style: preserve-3d;
+    /* 비율 유지하며 반응형 대응 */
+    aspect-ratio: 16 / 10;
 
-    /* 핵심 수정 2: 각도 및 스케일 최적화 */
-    /* 너무 과한 Z축 회전(기울기)을 줄이고, Y축(깊이)을 강조 */
+    /* [핵심 수정] 각도: Z축 회전을 없애 안정감 부여, Y축을 줄여 정면성 확보 */
     transform:
-        rotateX(12deg)
-        /* 위쪽이 뒤로 넘어가는 각도 */
-        rotateY(-18deg)
-        /* 오른쪽이 뒤로 빠지는 각도 (리니어는 보통 왼쪽이 가깝고 오른쪽이 멈) */
-        rotateZ(4deg)
-        /* 살짝 오른쪽 아래로 떨어지는 느낌 */
-        scale(1.1);
-    /* 과도한 확대(1.35)를 줄여 화질 저하 방지 */
+        rotateX(20deg) rotateY(-12deg) rotateZ(0deg)
+        /* 기울어짐 제거 */
+        scale(1.0);
+    /* 확대 제거하여 선명도 유지 */
 
+    transform-style: preserve-3d;
     transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 
-    /* 핵심 수정 3: 컬러 글로우 그림자 추가 (보라색/파란색 틴트) */
-    box-shadow:
-        0 20px 50px -10px rgba(0, 0, 0, 0.8),
-        /* 기본 그림자 */
-        0 0 100px -20px rgba(99, 102, 241, 0.3);
-    /* 브랜드 컬러 글로우 (중요!) */
-
     border-radius: 12px;
+
+    /* [핵심 수정] 그림자: 바닥 그림자와 뒤쪽 글로우 분리 */
+    box-shadow:
+        /* 1. 패널 자체의 깊은 그림자 */
+        0 50px 100px -20px rgba(0, 0, 0, 0.7),
+        /* 2. 브랜드 컬러(보라/파랑) 앰비언트 글로우 */
+        0 0 120px -30px rgba(99, 102, 241, 0.25);
 }
 
-/* 마우스 호버 시 살짝 떠오르는 인터랙션 */
+/* 호버 시 살짝 떠오르며 정면을 바라보게 */
 .demo-3d-container:hover {
     transform:
-        rotateX(8deg) rotateY(-12deg) rotateZ(2deg) scale(1.12);
+        rotateX(10deg) rotateY(-5deg) translateY(-10px);
+
     box-shadow:
-        0 40px 80px -15px rgba(0, 0, 0, 0.9),
-        0 0 120px -30px rgba(99, 102, 241, 0.5);
+        0 60px 120px -20px rgba(0, 0, 0, 0.8),
+        0 0 150px -40px rgba(99, 102, 241, 0.4);
 }
 
 .demo-card {
     position: absolute;
     inset: 0;
-    /* width/height 대신 inset 사용 */
     border-radius: 12px;
-    overflow: hidden;
     background: #0f0f11;
+    overflow: hidden;
 
-    /* 핵심 수정 4: 유리질감 테두리 (1px 엣지 라이트) */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
-    /* 상단 하이라이트 */
+    /* [핵심 디테일] 유리의 두께감 표현 (Inner Border) */
+    /* 상단은 밝고(반사), 하단은 어둡게 처리 */
+    box-shadow:
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
-/* 유리 광택 효과 (대각선) */
-.demo-card::after {
+/* 화면 표면의 은은한 반사광 (Sheen) */
+.demo-card::before {
     content: '';
     position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg,
-            rgba(255, 255, 255, 0.05) 0%,
-            rgba(255, 255, 255, 0.01) 20%,
-            transparent 100%);
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(110deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.05) 20%,
+            transparent 30%);
     pointer-events: none;
-    z-index: 10;
+    z-index: 20;
+    mix-blend-mode: overlay;
 }
 
 .demo-video {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 1;
-    /* 비디오 자체에 투명도 그라데이션을 주어 바닥과 자연스럽게 섞임 */
-    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+    border-radius: 11px;
+    /* 부모보다 1px 작게 */
+
+    /* 비디오 자체 마스크는 제거하거나 아주 약하게 하단만 처리 */
+    opacity: 0.95;
+    /* 너무 쨍하지 않게 살짝 누름 */
 }
 
+/* 프레임 이미지가 있다면 비디오 위에 얹기 */
 .demo-frame {
-    /* Retaining demo-frame logic but making it invisible or adjusting if needed. 
-       User didn't provide specific logic for frame separately except broadly. 
-       Actually, previous logic had .demo-frame. User's new css doesn't explicitly mention .demo-frame styles 
-       BUT the html still has img.demo-frame. 
-       If I remove .demo-frame css, the image might break layout. 
-       I will keep the essential .demo-frame css from previous version or minimal reset if not provided.
-       Wait, user said "replace this part with this". 
-       I will assume I should add the frame css back if it's missing in the snippet but required.
-       However, the user says "해당부분 이렇게 고쳐서 푸시해" implying their snippet is the source of truth.
-       The snippet DOES NOT include .demo-frame. 
-       If I remove it, the frame image might overlay weirdly.
-       I will check index.html. img class="demo-frame" exists.
-       If I don't style it, it might default to inline.
-       I will ADD the .demo-frame style back to ensure it doesn't break, just positioned absolute.
-    */
     position: absolute;
-    top: 0;
-    left: 0;
+    inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: fill;
-    z-index: 1;
+    z-index: 10;
     pointer-events: none;
+    opacity: 0.8;
 }
 
 /* Overlay & Hint Removed/Hidden */
@@ -674,16 +667,27 @@ h3 {
 @media(max-width: 1024px) {
     .demo-wrapper {
         flex-direction: column;
+        gap: 60px;
         text-align: center;
-        gap: 40px;
+    }
+
+    .demo-text {
+        order: 1;
+        /* 텍스트를 위로 */
+    }
+
+    .linear-heading {
+        font-size: 2.5rem;
     }
 
     .demo-3d-wrapper {
+        order: 2;
         width: 100%;
-        mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+        perspective: 1000px;
     }
 
     .demo-3d-container {
-        transform: rotateX(10deg) scale(1);
+        /* 모바일에서는 각도를 줄여서 잘 보이게 */
+        transform: rotateX(10deg) rotateY(0deg);
     }
 }
