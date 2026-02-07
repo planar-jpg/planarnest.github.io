@@ -506,21 +506,25 @@ h3 {
 
 .demo-3d-container {
     position: relative;
-    width: 65%;
-    max-width: 900px;
+    width: 75%;
+    /* Increased width */
+    max-width: 1100px;
     aspect-ratio: 16 / 10;
     transform-style: preserve-3d;
-    /* Linear-style Skew: Elegant and dimensional */
+    /* Permanent Linear-style Skew */
     transform: perspective(2000px) rotateX(12deg) rotateY(12deg) rotateZ(-4deg) scale(0.95);
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
     box-shadow: 20px 40px 80px -10px rgba(0, 0, 0, 0.6);
     border-radius: 12px;
+    /* Hardware acceleration */
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 
-/* Hover State: Flatten for viewing */
+/* Hover State: Keep tilted, just float up slightly */
 .demo-3d-container:hover {
-    transform: perspective(2000px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1);
-    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
+    transform: perspective(2000px) rotateX(12deg) rotateY(12deg) rotateZ(-4deg) scale(1) translateY(-10px);
+    box-shadow: 30px 60px 100px -10px rgba(0, 0, 0, 0.7);
 }
 
 .demo-card {
@@ -536,7 +540,8 @@ h3 {
 .demo-frame {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
+    /* Ensure full frame is visible */
     position: absolute;
     top: 0;
     left: 0;
@@ -544,59 +549,30 @@ h3 {
 }
 
 .demo-video {
-    /* Precise positioning for the "Canvas" area inside the frame */
-    /* Assumes: Top Header ~8%, Left Sidebar ~20% */
+    /* Adjusted Position: Slightly Up and Left */
     position: absolute;
-    top: 8.5%;
-    /* Below header */
-    left: 18%;
-    /* Right of sidebar */
-    width: 82%;
-    /* Remaining width */
-    height: 91.5%;
-    /* Remaining height */
+    top: 7.5%;
+    /* Moved up from 8.5% */
+    left: 17%;
+    /* Moved left from 18% */
+    width: 83%;
+    /* Slightly wider */
+    height: 92.5%;
+    /* Slightly taller */
     object-fit: cover;
     z-index: 2;
-    /* On top of frame image */
     opacity: 1;
     display: block;
-    /* Optional: Corner radius to match inner UI if usually rounded */
-    border-top-left-radius: 8px;
+    border-top-left-radius: 6px;
 }
 
-/* Ensure interaction works */
+/* Overlay & Hint Removed/Hidden */
 .demo-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.2);
-    /* Lighter overlay since video is visible */
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-}
-
-.demo-3d-container:hover .demo-overlay {
-    opacity: 0;
+    display: none;
 }
 
 .demo-hint {
-    color: white;
-    font-size: 0.9rem;
-    font-weight: 500;
-    padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.6);
-    /* Darker hint bg */
-    border-radius: 30px;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    display: none;
 }
 
 /* Responsive adjustments */
