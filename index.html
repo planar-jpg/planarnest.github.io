@@ -103,40 +103,47 @@
     <!-- --- 9. RESULT SECTION (New) --- -->
     <section id="result-section" class="result-section">
         <div class="container">
-            <div class="result-header reveal-on-scroll">
-                <h2 class="linear-heading">Rapidly nest <br>complex shapes.</h2>
+            <!-- BLOCK 1: Text Left | Images Right -->
+            <div class="result-block block-1">
+                <div class="result-text-side reveal-on-scroll">
+                    <h2 class="linear-heading">Rapidly nest <br>complex shapes.</h2>
+                    <p class="linear-subtext">Stop wasting hours on manual arrangement. Our engine handles intricate
+                        geometries instantly.</p>
+                </div>
+                <div class="result-images-side reveal-on-scroll delay-1">
+                    <div class="overlap-grid-2">
+                        <div class="result-card card-a">
+                            <img src="assets/result-1.png" alt="Nesting Result 1" class="result-img"
+                                onerror="this.style.display='none';this.parentElement.style.background='#222'">
+                        </div>
+                        <div class="result-card card-b">
+                            <img src="assets/result-2.png" alt="Nesting Result 2" class="result-img"
+                                onerror="this.style.display='none';this.parentElement.style.background='#333'">
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="result-grid">
-                <!-- Image 1 -->
-                <div class="result-card card-1 reveal-on-scroll delay-1">
-                    <div class="result-image-wrapper">
-                        <img src="assets/result-1.png" alt="Nesting Result Example 1" class="result-img">
-                        <div class="glass-overlay"></div>
+            <!-- BLOCK 2: Image Left | Text Center | Image Right -->
+            <div class="result-block block-2">
+                <div class="side-image left reveal-on-scroll delay-1">
+                    <div class="result-card card-c">
+                        <!-- Using placeholder logic if result-3/4 don't exist yet, reusing 1/2 for demo -->
+                        <img src="assets/result-1.png" alt="Nesting Result 3" class="result-img"
+                            onerror="this.style.display='none';this.parentElement.style.background='#222'">
                     </div>
                 </div>
 
-                <!-- Image 2 -->
-                <div class="result-card card-2 reveal-on-scroll delay-2">
-                    <div class="result-image-wrapper">
-                        <img src="assets/result-2.png" alt="Nesting Result Example 2" class="result-img">
-                        <div class="glass-overlay"></div>
-                    </div>
+                <div class="center-text reveal-on-scroll">
+                    <h3 class="linear-heading-sm">Nest 1,600 parts <br>in just 2 minutes.</h3>
+                    <p class="linear-subtext">Still labeling manually? Add unique IDs to all parts with a single click.
+                    </p>
                 </div>
 
-                <!-- Image 3 -->
-                <div class="result-card card-3 reveal-on-scroll delay-3">
-                    <div class="result-image-wrapper">
-                        <img src="assets/result-3.png" alt="Nesting Result Example 3" class="result-img">
-                        <div class="glass-overlay"></div>
-                    </div>
-                </div>
-
-                <!-- Image 4 -->
-                <div class="result-card card-4 reveal-on-scroll delay-4">
-                    <div class="result-image-wrapper">
-                        <img src="assets/result-4.png" alt="Nesting Result Example 4" class="result-img">
-                        <div class="glass-overlay"></div>
+                <div class="side-image right reveal-on-scroll delay-2">
+                    <div class="result-card card-d">
+                        <img src="assets/result-2.png" alt="Nesting Result 4" class="result-img"
+                            onerror="this.style.display='none';this.parentElement.style.background='#333'">
                     </div>
                 </div>
             </div>
