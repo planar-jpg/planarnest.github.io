@@ -704,20 +704,23 @@ h3 {
 
 /* --- 9. RESULT SECTION (New - Overlapping Concept) --- */
 .result-section {
-    padding: 180px 0; /* 넓은 여백 */
+    padding: 120px 0;
+    /* 여백 축소 */
     position: relative;
     overflow: hidden;
 }
 
 .result-header {
     text-align: center;
-    margin-bottom: 120px;
+    margin-bottom: 80px;
+    /* 여백 축소 */
     position: relative;
     z-index: 10;
 }
 
 .result-header h2 {
-    font-size: 5rem; /* 아주 큰 타이포 */
+    font-size: 3.5rem;
+    /* 타이포 크기 축소 (5rem -> 3.5rem) */
     line-height: 1.1;
     letter-spacing: -0.04em;
     background: linear-gradient(180deg, #FFFFFF 20%, rgba(255, 255, 255, 0.4) 100%);
@@ -728,25 +731,29 @@ h3 {
 .result-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    /* 12컬럼 그리드 */
+    /* 12컬럼 그리드 유지 */
     gap: 20px;
     position: relative;
-    max-width: 1200px;
+    max-width: 1000px;
+    /* 전체 컨테이너 너비 축소 (1200 -> 1000) */
     margin: 0 auto;
-    min-height: 600px; 
+    min-height: 500px;
+    /* 높이 축소 */
 }
 
 .result-card {
     position: relative;
-    border-radius: 20px;
+    border-radius: 16px;
+    /* 반경 축소 */
     overflow: hidden;
     /* Glass Effect */
     background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 
-        0 30px 60px -15px rgba(0, 0, 0, 0.6),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15); /* Top highlight */
-    
+    box-shadow:
+        0 20px 40px -15px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    /* Top highlight */
+
     transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
@@ -760,46 +767,71 @@ h3 {
     width: 100%;
     height: auto;
     display: block;
-    filter: brightness(0.85) contrast(1.1); /* 살짝 어둡게 해서 분위기 조절 */
+    filter: brightness(0.85) contrast(1.1);
+    /* 살짝 어둡게 해서 분위기 조절 */
     transition: filter 0.6s ease;
 }
 
 /* Hover Effects */
 .result-card:hover {
-    transform: translateY(-15px) scale(1.02);
-    box-shadow: 
-        0 50px 100px -20px rgba(0, 0, 0, 0.7),
-        0 0 80px -20px rgba(99, 102, 241, 0.15), /* Subtle glow */
+    transform: translateY(-10px) scale(1.02) !important;
+    /* 호버 시 스케일 축소 */
+    box-shadow:
+        0 40px 80px -20px rgba(0, 0, 0, 0.7),
+        0 0 60px -20px rgba(99, 102, 241, 0.15),
+        /* Subtle glow */
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    z-index: 20 !important; /* 호버시 최상단으로 */
+    z-index: 20 !important;
+    /* 호버시 최상단으로 */
 }
 
 .result-card:hover .result-img {
     filter: brightness(1) contrast(1.1);
 }
 
-/* Card 1: Left, slightly rotated left */
+/* 4-Image Grid Layout (Compact & Overlapping) */
+/* Top Left */
 .card-1 {
-    grid-column: 2 / span 6; /* 6칸 차지 */
+    grid-column: 2 / span 5;
     grid-row: 1;
     z-index: 5;
-    transform: rotate(-2deg) translateY(20px);
+    transform: rotate(-2deg);
 }
 
-/* Card 2: Right, overlapping, slightly rotated right */
+/* Top Right */
 .card-2 {
-    grid-column: 6 / span 6; /* 6칸 차지, 왼쪽과 2칸 겹침! */
+    grid-column: 6 / span 6;
     grid-row: 1;
     z-index: 4;
-    transform: rotate(2deg) translateY(120px); /* 아래로 쳐지게 배치 */
-    margin-top: 60px;
+    transform: rotate(2deg) translateY(30px);
+    /* 약간 아래로 */
+}
+
+/* Bottom Left */
+.card-3 {
+    grid-column: 3 / span 5;
+    /* 중앙 쪽으로 모음 */
+    grid-row: 2;
+    z-index: 6;
+    /* 위로 올라옴 */
+    transform: rotate(3deg) translateY(-40px);
+    /* 겹치게 위로 올림 */
+    margin-top: -20px;
+}
+
+/* Bottom Right */
+.card-4 {
+    grid-column: 7 / span 5;
+    grid-row: 2;
+    z-index: 3;
+    transform: rotate(-1deg) translateY(-20px);
 }
 
 /* Glass Overlay for sheen */
 .glass-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(120deg, rgba(255,255,255,0.05) 0%, transparent 40%);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.05) 0%, transparent 40%);
     pointer-events: none;
     z-index: 2;
 }
@@ -807,26 +839,30 @@ h3 {
 /* Mobile Responsive */
 @media(max-width: 1024px) {
     .result-section {
-        padding: 100px 0;
+        padding: 80px 0;
     }
-    
+
     .result-header h2 {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
-    
+
     .result-grid {
         display: flex;
         flex-direction: column;
-        gap: 60px;
+        gap: 40px;
         min-height: auto;
         padding: 0 20px;
     }
 
-    .card-1, .card-2 {
+    .card-1,
+    .card-2,
+    .card-3,
+    .card-4 {
         grid-column: auto;
         grid-row: auto;
         width: 100%;
         margin: 0 !important;
-        transform: none !important; /* 모바일에선 정직하게 배치 */
+        transform: none !important;
+        /* 모바일에선 정직하게 배치 */
     }
 }
