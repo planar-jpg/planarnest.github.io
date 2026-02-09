@@ -633,31 +633,23 @@ h3 {
     object-fit: cover;
     border-radius: 4px;
     /* 캔버스 모서리에 맞춤 */
-    z-index: 5;
-    /* 프레임(z-index:10) 아래에 위치 */
+    z-index: 10;
+    /* 프레임(z-index:1) 위에 위치하여 캔버스를 덮음 */
     opacity: 1;
-    /* 투명도 제거 - 완전 불투명 */
+    /* 완전 불투명 */
 }
 
-/* 프레임 이미지: 비디오 위에 완전 불투명하게 덮기 */
-/* 캔버스 영역만 투명하게 처리하여 비디오가 보이도록 */
+/* 프레임 이미지: 비디오 아래에 배치 */
 .demo-frame {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    z-index: 10;
-    /* 비디오(z-index:5) 위에 위치 */
+    z-index: 1;
+    /* 비디오(z-index:10) 아래에 위치 */
     pointer-events: none;
     opacity: 1;
     /* 완전 불투명 */
-
-    /* 캔버스 영역을 투명하게 만드는 마스크 */
-    /* 사이드바와 상단바는 보이고, 캔버스 영역(오른쪽 하단)만 투명 */
-    -webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="white" width="100" height="100"/><rect fill="black" x="17.5" y="3.5" width="82" height="93" rx="0.5"/></svg>');
-    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="white" width="100" height="100"/><rect fill="black" x="17.5" y="3.5" width="82" height="93" rx="0.5"/></svg>');
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
 }
 
 /* Overlay & Hint Removed/Hidden */
