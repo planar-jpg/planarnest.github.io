@@ -622,25 +622,42 @@ h3 {
 .demo-video {
     /* 프레임의 캔버스 영역에만 맞추기 */
     position: absolute;
-    top: 3.5%;       /* 상단 여백 */
-    left: 17.5%;     /* 좌측 사이드바 영역 제외 */
-    width: 82%;      /* 캔버스 영역 너비 */
-    height: 93%;     /* 캔버스 영역 높이 */
+    top: 3.5%;
+    /* 상단 여백 */
+    left: 17.5%;
+    /* 좌측 사이드바 영역 제외 */
+    width: 82%;
+    /* 캔버스 영역 너비 */
+    height: 93%;
+    /* 캔버스 영역 높이 */
     object-fit: cover;
-    border-radius: 4px; /* 캔버스 모서리에 맞춤 */
-    z-index: 5;      /* 프레임(z-index:10) 아래에 위치 */
-    opacity: 1;      /* 투명도 제거 - 완전 불투명 */
+    border-radius: 4px;
+    /* 캔버스 모서리에 맞춤 */
+    z-index: 5;
+    /* 프레임(z-index:10) 아래에 위치 */
+    opacity: 1;
+    /* 투명도 제거 - 완전 불투명 */
 }
 
 /* 프레임 이미지: 비디오 위에 완전 불투명하게 덮기 */
+/* 캔버스 영역만 투명하게 처리하여 비디오가 보이도록 */
 .demo-frame {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    z-index: 10;          /* 비디오(z-index:5) 위에 위치 */
+    z-index: 10;
+    /* 비디오(z-index:5) 위에 위치 */
     pointer-events: none;
-    opacity: 1;           /* 완전 불투명 - 프레임이 캔버스 외 영역을 완전히 가림 */
+    opacity: 1;
+    /* 완전 불투명 */
+
+    /* 캔버스 영역을 투명하게 만드는 마스크 */
+    /* 사이드바와 상단바는 보이고, 캔버스 영역(오른쪽 하단)만 투명 */
+    -webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="white" width="100" height="100"/><rect fill="black" x="17.5" y="3.5" width="82" height="93" rx="0.5"/></svg>');
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="white" width="100" height="100"/><rect fill="black" x="17.5" y="3.5" width="82" height="93" rx="0.5"/></svg>');
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
 }
 
 /* Overlay & Hint Removed/Hidden */
