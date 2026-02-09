@@ -701,3 +701,132 @@ h3 {
         transform: rotateX(10deg) rotateY(0deg);
     }
 }
+
+/* --- 9. RESULT SECTION (New - Overlapping Concept) --- */
+.result-section {
+    padding: 180px 0; /* 넓은 여백 */
+    position: relative;
+    overflow: hidden;
+}
+
+.result-header {
+    text-align: center;
+    margin-bottom: 120px;
+    position: relative;
+    z-index: 10;
+}
+
+.result-header h2 {
+    font-size: 5rem; /* 아주 큰 타이포 */
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(180deg, #FFFFFF 20%, rgba(255, 255, 255, 0.4) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    /* 12컬럼 그리드 */
+    gap: 20px;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 600px; 
+}
+
+.result-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    /* Glass Effect */
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 
+        0 30px 60px -15px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15); /* Top highlight */
+    
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.result-image-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.result-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: brightness(0.85) contrast(1.1); /* 살짝 어둡게 해서 분위기 조절 */
+    transition: filter 0.6s ease;
+}
+
+/* Hover Effects */
+.result-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 
+        0 50px 100px -20px rgba(0, 0, 0, 0.7),
+        0 0 80px -20px rgba(99, 102, 241, 0.15), /* Subtle glow */
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    z-index: 20 !important; /* 호버시 최상단으로 */
+}
+
+.result-card:hover .result-img {
+    filter: brightness(1) contrast(1.1);
+}
+
+/* Card 1: Left, slightly rotated left */
+.card-1 {
+    grid-column: 2 / span 6; /* 6칸 차지 */
+    grid-row: 1;
+    z-index: 5;
+    transform: rotate(-2deg) translateY(20px);
+}
+
+/* Card 2: Right, overlapping, slightly rotated right */
+.card-2 {
+    grid-column: 6 / span 6; /* 6칸 차지, 왼쪽과 2칸 겹침! */
+    grid-row: 1;
+    z-index: 4;
+    transform: rotate(2deg) translateY(120px); /* 아래로 쳐지게 배치 */
+    margin-top: 60px;
+}
+
+/* Glass Overlay for sheen */
+.glass-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(255,255,255,0.05) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Mobile Responsive */
+@media(max-width: 1024px) {
+    .result-section {
+        padding: 100px 0;
+    }
+    
+    .result-header h2 {
+        font-size: 3rem;
+    }
+    
+    .result-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+        min-height: auto;
+        padding: 0 20px;
+    }
+
+    .card-1, .card-2 {
+        grid-column: auto;
+        grid-row: auto;
+        width: 100%;
+        margin: 0 !important;
+        transform: none !important; /* 모바일에선 정직하게 배치 */
+    }
+}
