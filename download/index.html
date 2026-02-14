@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download PlanarNest</title>
+    <meta name="description" content="Download PlanarNest - The Ultimate Nesting Tool for professionals.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/logo-black.png">
+    <style>
+        :root {
+            --bg-void: #030005;
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --primary-glow: #6366f1;
+            --accent-teal: #2dd4bf;
+            --text-main: #ffffff;
+            --text-muted: #888899;
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --ease-elastic: cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-void);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: overlay;
+        }
+
+        .ambient-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+        }
+
+        .orb-1 {
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15), transparent 70%);
+            top: -20%;
+            left: -10%;
+        }
+
+        .orb-2 {
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.1), transparent 70%);
+            bottom: -10%;
+            right: -10%;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Back link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 40px 0 0;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #fff;
+        }
+
+        .back-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            padding: 80px 0 60px;
+        }
+
+        .page-header h1 {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin-bottom: 16px;
+            background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.6) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 32px 36px;
+            backdrop-filter: blur(20px);
+            margin-bottom: 24px;
+            transition: border-color 0.4s;
+        }
+
+        .info-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .info-card .card-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.2);
+            color: #a78bfa;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            font-family: var(--font-display);
+        }
+
+        .info-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            text-transform: none;
+            line-height: 1.3;
+        }
+
+        .info-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Warning card accent */
+        .info-card.warning-card {
+            border-color: rgba(251, 191, 36, 0.25);
+        }
+
+        .info-card.warning-card .card-number {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+        }
+
+        /* VirusTotal placeholder */
+        .vt-placeholder {
+            margin-top: 20px;
+            border-radius: 12px;
+            border: 1px dashed rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.02);
+            padding: 40px 24px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .vt-placeholder svg {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 12px;
+            opacity: 0.4;
+        }
+
+        /* Contact */
+        .contact-link {
+            color: var(--accent-teal);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .contact-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Temporary notice */
+        .info-card.temp-card {
+            border-color: rgba(99, 102, 241, 0.25);
+            text-align: center;
+        }
+
+        .info-card.temp-card .card-number {
+            background: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+        }
+
+        /* Download CTA */
+        .download-cta {
+            text-align: center;
+            padding: 60px 0 100px;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px 52px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: var(--font-body);
+            color: #000;
+            background: white;
+            border: 1px solid white;
+            border-radius: 99px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s var(--ease-elastic);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn:hover {
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .download-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .download-sub {
+            margin-top: 16px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .page-footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin: 0 12px;
+            transition: color 0.3s;
+        }
+
+        .page-footer a:hover {
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .info-card {
+                padding: 24px 20px;
+            }
+
+            .download-btn {
+                padding: 16px 36px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .fade-up:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .fade-up:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .fade-up:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .fade-up:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="noise-overlay"></div>
+    <div class="ambient-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <div class="container">
+        <a href="/" class="back-link">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Home
+        </a>
+
+        <div class="page-header fade-up">
+            <h1>Download PlanarNest</h1>
+            <p>Before you download, please read the notes below.</p>
+        </div>
+
+        <!-- 1. Windows SmartScreen Warning -->
+        <div class="info-card warning-card fade-up">
+            <div class="card-number">1</div>
+            <h3>Windows SmartScreen Warning</h3>
+            <p>
+                This file has not been code-signed yet. Windows SmartScreen may display a warning when you run the
+                installer.
+                We are currently in the process of obtaining a code-signing certificate.
+                We appreciate your understanding.
+            </p>
+        </div>
+
+        <!-- 2. VirusTotal Result -->
+        <div class="info-card fade-up">
+            <div class="card-number">2</div>
+            <h3>VirusTotal Scan Result</h3>
+            <p>
+                This tool is safe. Below is the VirusTotal scan result for verification.
+            </p>
+            <div class="vt-placeholder">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.41a2.25 2.25 0 013.182 0l2.909 2.91M3.75 21h16.5a1.5 1.5 0 001.5-1.5V5.25a1.5 1.5 0 00-1.5-1.5H3.75a1.5 1.5 0 00-1.5 1.5v14.25a1.5 1.5 0 001.5 1.5z" />
+                </svg>
+                <p>VirusTotal screenshot will be placed here</p>
+            </div>
+        </div>
+
+        <!-- 3. Distribution & Contact -->
+        <div class="info-card fade-up">
+            <div class="card-number">3</div>
+            <h3>Distribution via GitHub Releases</h3>
+            <p>
+                This app is distributed through GitHub Releases. If Chrome blocks the download, please contact us and
+                we'll help you right away.
+            </p>
+            <p style="margin-top: 12px;">
+                <a href="mailto:contact@planarnest.com" class="contact-link">contact@planarnest.com</a>
+            </p>
+        </div>
+
+        <!-- 4. Temporary Notice -->
+        <div class="info-card temp-card fade-up">
+            <div class="card-number">4</div>
+            <h3>Temporary Page</h3>
+            <p>
+                This page will be removed once code-signing is complete.<br>
+                Thank you for your understanding.
+            </p>
+        </div>
+
+        <!-- Download Button -->
+        <div class="download-cta fade-up">
+            <a href="https://github.com/junbyjun1238/Planarnest/releases/download/v0.1.16-demo/PlanarNest_0.1.16_x64-setup.exe"
+                class="download-btn" id="download-exe-btn">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+                Download for Windows
+            </a>
+            <p class="download-sub">v0.1.16 Beta · Windows x64</p>
+        </div>
+    </div>
+
+    <footer class="page-footer">
+        <div class="container">
+            &copy; 2026 PlanarNest. All rights reserved.
+            <a href="/terms.html">Terms</a>
+            <a href="/privacy-policy.html">Privacy</a>
+        </div>
+    </footer>
+</body>
+
+</html>
