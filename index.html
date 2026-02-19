@@ -61,8 +61,7 @@
                             <span>Download for Free</span>
                             <div class="btn-glow"></div>
                         </a>
-                        <a href="https://planarnest.lemonsqueezy.com/checkout/buy/f40bb84a-f7a2-43ce-9e69-9ff3fe4ea5f8"
-                            class="btn btn-primary magnetic-btn lemonsqueezy-button"
+                        <a href="#" class="btn btn-primary magnetic-btn buy-now-btn"
                             style="padding: 16px 48px; font-size: 1.1rem;">Buy Now</a>
                         <span class="sub-text">macOS coming soon</span>
                     </div>
@@ -238,13 +237,73 @@
                 <h2 style="font-size: 3rem;">$34</h2>
                 <p style="margin-bottom: 30px; font-size: 1.2rem; color: white;">Lifetime License</p>
                 <p style="margin-bottom: 40px; color: var(--text-muted);">Pay once. Use forever. No recurring fees.</p>
-                <a href="https://planarnest.lemonsqueezy.com/checkout/buy/f40bb84a-f7a2-43ce-9e69-9ff3fe4ea5f8"
-                    class="btn btn-primary magnetic-btn lemonsqueezy-button"
+                <a href="#" class="btn btn-primary magnetic-btn buy-now-btn"
                     style="padding: 16px 48px; font-size: 1.1rem; display: inline-block;">Buy
                     Now</a>
             </div>
         </div>
     </section>
+
+    <!-- Terms Agreement Modal -->
+    <div id="terms-modal"
+        style="display:none; position:fixed; inset:0; z-index:10000; background:rgba(0,0,0,0.7); backdrop-filter:blur(8px); align-items:center; justify-content:center;">
+        <div
+            style="background:#0d0d12; border:1px solid rgba(255,255,255,0.1); border-radius:24px; padding:48px 40px; max-width:420px; width:90%; text-align:center; position:relative; box-shadow:0 40px 80px rgba(0,0,0,0.6);">
+            <button id="modal-close"
+                style="position:absolute; top:16px; right:20px; background:none; border:none; color:#888; font-size:1.4rem; cursor:pointer;">&times;</button>
+            <h3
+                style="font-family:'Outfit',sans-serif; font-size:1.5rem; font-weight:700; color:#fff; margin-bottom:24px; letter-spacing:-0.02em;">
+                약관에 동의하시겠습니까?</h3>
+            <p style="margin-bottom:20px;"><a href="/terms.html" target="_blank" rel="noopener noreferrer"
+                    style="color:#888; font-size:0.85rem; text-decoration:underline;">Terms 바로가기 →</a></p>
+            <label
+                style="display:flex; align-items:center; justify-content:center; gap:10px; cursor:pointer; margin-bottom:32px; color:rgba(255,255,255,0.8); font-size:0.95rem;">
+                <input type="checkbox" id="terms-checkbox"
+                    style="width:18px; height:18px; accent-color:#6366f1; cursor:pointer;">
+                <span>동의합니다</span>
+            </label>
+            <a id="modal-buy-btn"
+                href="https://planarnest.lemonsqueezy.com/checkout/buy/f40bb84a-f7a2-43ce-9e69-9ff3fe4ea5f8"
+                class="btn btn-primary lemonsqueezy-button"
+                style="padding:14px 44px; font-size:1rem; font-weight:600; border-radius:99px; pointer-events:none; opacity:0.35; transition:all 0.3s; display:inline-block; text-decoration:none; background:white; color:black; border:1px solid white;">Buy
+                Now</a>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var modal = document.getElementById('terms-modal');
+            var checkbox = document.getElementById('terms-checkbox');
+            var buyBtn = document.getElementById('modal-buy-btn');
+            var closeBtn = document.getElementById('modal-close');
+
+            document.querySelectorAll('.buy-now-btn').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    checkbox.checked = false;
+                    buyBtn.style.pointerEvents = 'none';
+                    buyBtn.style.opacity = '0.35';
+                    buyBtn.style.boxShadow = 'none';
+                    modal.style.display = 'flex';
+                });
+            });
+
+            checkbox.addEventListener('change', function () {
+                if (checkbox.checked) {
+                    buyBtn.style.pointerEvents = 'auto';
+                    buyBtn.style.opacity = '1';
+                    buyBtn.style.boxShadow = '0 0 30px rgba(255,255,255,0.3)';
+                } else {
+                    buyBtn.style.pointerEvents = 'none';
+                    buyBtn.style.opacity = '0.35';
+                    buyBtn.style.boxShadow = 'none';
+                }
+            });
+
+            closeBtn.addEventListener('click', function () { modal.style.display = 'none'; });
+            modal.addEventListener('click', function (e) { if (e.target === modal) modal.style.display = 'none'; });
+        })();
+    </script>
 
     <footer>
         <div class="container">
