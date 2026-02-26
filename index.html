@@ -62,7 +62,8 @@
                         Stop wasting material. Zero-config nesting that pays for itself in a single job.
                     </p>
                     <div class="hero-actions reveal-on-scroll delay-3">
-                        <a href="/download/" class="btn btn-xl btn-primary magnetic-btn" id="download-btn">
+                        <a href="/download/" class="btn btn-xl btn-primary magnetic-btn" id="download-btn"
+                            data-download-url="https://github.com/junbyjun1238/Planarnest/releases/download/v0.1.16-demo/PlanarNest_0.1.16_x64-setup.exe">
                             <span>Download for Free</span>
                             <div class="btn-glow"></div>
                         </a>
@@ -307,6 +308,39 @@
 
             closeBtn.addEventListener('click', function () { modal.style.display = 'none'; });
             modal.addEventListener('click', function (e) { if (e.target === modal) modal.style.display = 'none'; });
+        })();
+    </script>
+
+    <script>
+        (function () {
+            var downloadBtn = document.getElementById('download-btn');
+            if (!downloadBtn) {
+                return;
+            }
+
+            downloadBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                if (typeof window.rdt === 'function') {
+                    window.rdt('track', 'Lead');
+                }
+
+                var infoPageUrl = downloadBtn.getAttribute('href') || '/download/';
+                window.open(infoPageUrl, '_blank', 'noopener');
+
+                var downloadUrl = downloadBtn.dataset.downloadUrl;
+                if (!downloadUrl) {
+                    return;
+                }
+
+                var link = document.createElement('a');
+                link.href = downloadUrl;
+                link.rel = 'noopener noreferrer';
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
         })();
     </script>
 
