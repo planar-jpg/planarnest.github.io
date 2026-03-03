@@ -313,16 +313,80 @@
 
     <script>
         (function () {
+            var REDDIT_ATTR_KEY = 'pn_reddit_attrib_v1';
+            var REDDIT_ATTR_TTL_MS = 7 * 24 * 60 * 60 * 1000;
             var downloadBtn = document.getElementById('download-btn');
             if (!downloadBtn) {
                 return;
             }
 
+            function clearRedditAttribution() {
+                try {
+                    window.localStorage.removeItem(REDDIT_ATTR_KEY);
+                } catch (err) {
+                    // ignore storage errors
+                }
+            }
+
+            function markRedditAttribution() {
+                try {
+                    window.localStorage.setItem(REDDIT_ATTR_KEY, String(Date.now()));
+                } catch (err) {
+                    // ignore storage errors
+                }
+            }
+
+            function hasValidRedditAttribution() {
+                try {
+                    var raw = window.localStorage.getItem(REDDIT_ATTR_KEY);
+                    if (!raw) {
+                        return false;
+                    }
+                    var ts = Number(raw);
+                    if (!Number.isFinite(ts) || ts <= 0) {
+                        clearRedditAttribution();
+                        return false;
+                    }
+                    if ((Date.now() - ts) > REDDIT_ATTR_TTL_MS) {
+                        clearRedditAttribution();
+                        return false;
+                    }
+                    return true;
+                } catch (err) {
+                    return false;
+                }
+            }
+
+            function hasRedditAttributionQuery() {
+                var params;
+                try {
+                    params = new URLSearchParams(window.location.search || '');
+                } catch (err) {
+                    return false;
+                }
+                var utmSource = (params.get('utm_source') || '').toLowerCase();
+                if (utmSource === 'reddit') {
+                    return true;
+                }
+                var keys = params.keys();
+                for (var key = keys.next(); !key.done; key = keys.next()) {
+                    if (/^rdt_/i.test(key.value)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            if (hasRedditAttributionQuery()) {
+                markRedditAttribution();
+            }
+
             downloadBtn.addEventListener('click', function (e) {
                 e.preventDefault();
 
-                if (typeof window.rdt === 'function') {
+                if (hasValidRedditAttribution() && typeof window.rdt === 'function') {
                     window.rdt('track', 'Lead');
+                    clearRedditAttribution();
                 }
 
                 var downloadUrl = downloadBtn.dataset.downloadUrl || downloadBtn.getAttribute('href');
