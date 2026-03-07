@@ -25,6 +25,22 @@
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'AW-17996782229');
+
+        function gtag_report_conversion(url) {
+            var callback = function () {
+                if (typeof (url) !== 'undefined') {
+                    window.location = url;
+                }
+            };
+            gtag('event', 'conversion', {
+                send_to: 'AW-17996782229/B4U_CPKQ74McEJW1xIVD',
+                value: 1.0,
+                currency: 'KRW',
+                event_callback: callback
+            });
+            window.setTimeout(callback, 900);
+            return false;
+        }
     </script>
     <!-- Reddit Pixel -->
     <script>
@@ -399,6 +415,11 @@
 
                 var downloadUrl = downloadBtn.dataset.downloadUrl || downloadBtn.getAttribute('href');
                 if (!downloadUrl) {
+                    return;
+                }
+
+                if (typeof window.gtag_report_conversion === 'function') {
+                    window.gtag_report_conversion(downloadUrl);
                     return;
                 }
 
